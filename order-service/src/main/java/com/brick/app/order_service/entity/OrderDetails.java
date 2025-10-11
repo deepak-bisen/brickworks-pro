@@ -1,4 +1,4 @@
-package com.brick.app.order_service.Entity;
+package com.brick.app.order_service.entity;
 
 import jakarta.persistence.*;
 
