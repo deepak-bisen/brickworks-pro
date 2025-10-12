@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Product {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Long id;
+   private Long productId;
 
     @Column(nullable = false)
     private String name;
@@ -25,11 +25,11 @@ public class Product {
     private int stockQuantity;
 
  public Long getId() {
-  return id;
+  return productId;
  }
 
- public void setId(Long id) {
-  this.id = id;
+ public void setId(Long productId) {
+  this.productId = productId;
  }
 
  public String getName() {

@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long custId;
 
     @Column(nullable = false)
     private String name;
@@ -22,11 +22,11 @@ public class Customer {
     private String address;
 
     public Long getId() {
-        return id;
+        return custId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long custId) {
+        this.custId = custId;
     }
 
     public String getName() {
