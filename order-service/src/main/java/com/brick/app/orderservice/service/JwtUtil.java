@@ -49,10 +49,10 @@ public class JwtUtil {
         return claimsResolver.apply(claims);
     }
     private Claims extractAllClaims(String token) {
-    // return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
-    // --- UPDATED to use the Key object ---
+        // return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
+        // --- UPDATED to use the Key object ---
         return Jwts.parserBuilder().setSigningKey(getSigningKey()).build().parseClaimsJws(token).getBody();
- }
+    }
 
 
     // Checks if the token has expired
@@ -85,4 +85,3 @@ public class JwtUtil {
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 }
-

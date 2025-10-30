@@ -25,6 +25,7 @@ public class JwtUtil {
     // private String SECRET_KEY = "brickworks_secret_key";
 
     // A more secure, longer secret key. Must be long enough for the HS256 algorithm.
+    // This MUST be identical to the key in our employee-service
     private final String SECRET_KEY = "BrickWorksProSecretKeyForJWTGenerationWhichIsSecureAndLongEnough";
 
     // --- NEW METHOD to generate a proper Key object ---
@@ -49,10 +50,10 @@ public class JwtUtil {
         return claimsResolver.apply(claims);
     }
     private Claims extractAllClaims(String token) {
-    // return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
-    // --- UPDATED to use the Key object ---
+        // return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
+        // --- UPDATED to use the Key object ---
         return Jwts.parserBuilder().setSigningKey(getSigningKey()).build().parseClaimsJws(token).getBody();
- }
+    }
 
 
     // Checks if the token has expired
@@ -61,6 +62,7 @@ public class JwtUtil {
     }
 
     // Generates a new JWT for a given UserDetails object
+    // This service only validates, but we include the whole file for consistency
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
         return createToken(claims, userDetails.getUsername());
@@ -85,4 +87,3 @@ public class JwtUtil {
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 }
-

@@ -5,9 +5,9 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "PRODUCTS")
 public class Product {
-   @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Long productId;
+ @Id
+ @GeneratedValue(strategy = GenerationType.IDENTITY)
+ private Long productId;
 
     @Column(nullable = false)
     private String name;
