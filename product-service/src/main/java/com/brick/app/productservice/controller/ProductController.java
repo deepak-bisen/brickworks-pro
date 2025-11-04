@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
@@ -39,7 +40,14 @@ public class ProductController {
         return productRepository.save(product);
     }
 
-    @DeleteMapping("/{id}")
+    /**
+     * Deletes a product by its ID.
+     * This is a protected endpoint and requires an authenticated JWT.
+     *
+     * @param id The ID of the product to delete.
+     * @return A 204 No Content response on success, or 404 Not Found.
+     */
+   @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         try {
             productService.deleteProduct(id);

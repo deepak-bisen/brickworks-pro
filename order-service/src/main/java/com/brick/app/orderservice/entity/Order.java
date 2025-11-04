@@ -1,10 +1,12 @@
 package com.brick.app.orderservice.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Entity
 @Table(name = "ORDERS")
@@ -20,6 +22,7 @@ public class Order {
 
     // This is a relationship to OrderDetail within the SAME service's database.
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<OrderDetails> orderDetails = new ArrayList<>();
 
     @Column(nullable = false)

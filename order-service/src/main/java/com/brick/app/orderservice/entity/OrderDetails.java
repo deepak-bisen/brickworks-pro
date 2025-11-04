@@ -1,5 +1,6 @@
 package com.brick.app.orderservice.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,6 +13,7 @@ public class OrderDetails {
     // This defines the "many" side of the relationship. Many OrderDetail items belong to one Order.
     // fetch = FetchType.LAZY means this data is only loaded from the DB when it's explicitly asked for.
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
     @JoinColumn(name = "order_id", nullable = false)
     private Order order;
 

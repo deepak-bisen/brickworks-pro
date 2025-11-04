@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/api-gateway/api-gateway/src/main/main.iml" filepath="$PROJECT_DIR$/api-gateway/api-gateway/src/main/main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/api-gateway/src/main/main2.iml" filepath="$PROJECT_DIR$/api-gateway/src/main/main2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/api-gateway/api-gateway/src/test/test.iml" filepath="$PROJECT_DIR$/api-gateway/api-gateway/src/test/test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/api-gateway/src/test/test2.iml" filepath="$PROJECT_DIR$/api-gateway/src/test/test2.iml" />
+    </modules>
+  </component>
+</project>
