@@ -24,11 +24,18 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 // Define authorization rules
                 .authorizeHttpRequests(auth -> auth
-                        // RULE: ANY request to this service MUST be authenticated.
+                        // --- THIS IS THE FIX ---
+                        // RULE 1: Allow all preflight OPTIONS requests from the browser.
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                        // RULE 2: Allow anyone to make a POST request to our new public quote endpoint.
+                        .requestMatchers(HttpMethod.POST, "/api/orders/public-quote").permitAll()
+
+                        // RULE 3: All other requests to this service (e.g., admin viewing orders) are protected.
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
+        // Add the filter to validate tokens on protected routes
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
