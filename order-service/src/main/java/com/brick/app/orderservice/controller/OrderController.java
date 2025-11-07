@@ -16,6 +16,16 @@ public class OrderController {
     private OrderService orderService;
 
     /**
+     * This is the NEW public endpoint for the "Get a Quote" form.
+     * It now calls the new service method to set the correct status.
+     */
+    @PostMapping("/public-quote")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Order createPublicQuote(@RequestBody OrderRequestDTO orderRequest) {
+        return orderService.createPublicQuote(orderRequest);
+    }
+
+    /**
      * This is the original, PROTECTED endpoint for an admin to create an order.
      * It will require a valid JWT.
      */
@@ -26,11 +36,12 @@ public class OrderController {
     }
 
 
+
     /**
      * This is the NEW public endpoint for the "Get a Quote" form.
      * It is allowed by the SecurityConfig.
      * It reuses the same logic as our admin createOrder method.
-     */
+     *
     @PostMapping("/public-quote")
     @ResponseStatus(HttpStatus.CREATED)
     public Order createPublicQuote(@RequestBody OrderRequestDTO orderRequest) {
@@ -39,5 +50,5 @@ public class OrderController {
         newOrder.setStatus("New Request");
         return newOrder;
     }
-
+    */
 }

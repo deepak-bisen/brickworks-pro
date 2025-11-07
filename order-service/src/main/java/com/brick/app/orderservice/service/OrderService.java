@@ -23,13 +23,34 @@ public class OrderService {
     @Autowired
     private RestTemplate restTemplate;
 
+    /**
+     * This is the original, protected method for admins.
+     * It sets the status to PENDING by default.
+     */
     @Transactional // This annotation ensures that the entire method runs in a single database transaction. If any part fails, all database changes are rolled back.
     public Order createOrder(OrderRequestDTO orderRequest) {
+        return createOrderWithStatus(orderRequest, "PENDING");
+    }
+
+    /**
+     * This is the NEW method for the public quote form.
+     * It allows us to set the status to "New Request".
+     */
+    @Transactional
+    public Order createPublicQuote(OrderRequestDTO orderRequest) {
+        // Here we explicitly set the status for a new public quote
+        return createOrderWithStatus(orderRequest, "New Request");
+    }
+
+    /**
+     * This is the main, reusable logic for creating any order.
+     */
+    public Order createOrderWithStatus(OrderRequestDTO orderRequest, String status) {
         // Step 1: Create a new Order entity and set its basic properties.
         Order order = new Order();
-        order.setCustomerId(orderRequest.getCustomerId());
+        order.setCustomerId(orderRequest.getCustomerId() != null ? orderRequest.getCustomerId() : 0L); // Use 0 for guest
         order.setOrderDate(LocalDateTime.now());
-        order.setStatus("PENDING");
+        order.setStatus(status); // Use the status we passed in
 
         List<OrderDetails> orderDetails = new ArrayList<>();
         double totalCost = 0.0;
@@ -69,4 +90,3 @@ public class OrderService {
         return orderRepository.save(order);
     }
 }
-
