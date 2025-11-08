@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrickWorks Pro</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Simple transition for page sections */
+        .page-section {
+            transition: opacity 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-red-700">🧱 BrickWorks Pro</div>
+
+            <!-- Desktop Navigation (Links + Buttons) -->
+            <div class="hidden md:flex items-center space-x-6">
+                <!-- Desktop Links -->
+                <a href="#" class="nav-link text-gray-600 hover:text-red-700 font-medium" data-page="home">Home</a>
+                <a href="#" class="nav-link text-gray-600 hover:text-red-700 font-medium" data-page="products">Products</a>
+                <a href="#" class="nav-link text-gray-600 hover:text-red-700 font-medium" data-page="process">Our Process</a>
+                <a href="#" class="nav-link text-gray-600 hover:text-red-700 font-medium" data-page="gallery">Gallery</a>
+                <a href="#" class="nav-link text-gray-600 hover:text-red-700 font-medium" data-page="contact">Contact</a>
+                
+                <!-- Desktop Buttons -->
+                 <a href="#" class="nav-link bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition duration-300" data-page="quote">Get a Quote</a>
+                 <a href="#" class="nav-link text-gray-600 hover:text-red-700" data-page="login" title="Admin Login">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                 </a>
+            </div>
+
+            <!-- Mobile Menu Button (Hamburger) -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-800 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu (Dropdown) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <a href="#" class="nav-link block px-6 py-3 text-gray-600 hover:bg-gray-100" data-page="home">Home</a>
+            <a href="#" class="nav-link block px-6 py-3 text-gray-600 hover:bg-gray-100" data-page="products">Products</a>
+            <a href="#" class="nav-link block px-6 py-3 text-gray-600 hover:bg-gray-100" data-page="process">Our Process</a>
+            <a href="#" class="nav-link block px-6 py-3 text-gray-600 hover:bg-gray-100" data-page="gallery">Gallery</a>
+            <a href="#" class="nav-link block px-6 py-3 text-gray-600 hover:bg-gray-100" data-page="contact">Contact</a>
+            <a href="#" class="nav-link block px-6 py-3 text-red-600 font-bold hover:bg-gray-100" data-page="quote">Get a Quote</a>
+            <a href="#" class="nav-link block px-6 py-3 text-gray-600 hover:bg-gray-100" data-page="login">Admin Login</a>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="container mx-auto p-6">
+
+        <!-- Home Page Section (Default Visible) -->
+        <section id="home-page" class="page-section">
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                <!-- Responsive Hero Image -->
+                <div class="h-48 md:h-64 lg:h-80 bg-cover bg-center" style="background-image: url('https://placehold.co/1200x400/993333/FFFFFF?text=Modern+Brick+Building')">
+                </div>
+                <div class="p-8 text-center">
+                    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">High-Quality Bricks for Your Next Project</h1>
+                    <p class="text-lg text-gray-700 mb-8">Durable, reliable bricks made from the finest local soil & sand.</p>
+                    <a href="#" class="nav-link bg-red-600 text-white px-8 py-3 rounded-lg text-lg font-medium hover:bg-red-700 transition duration-300" data-page="products">View Our Products</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Page Section (Hidden) -->
+        <section id="products-page" class="page-section" hidden>
+            <h1 class="text-3xl md:text-4xl font-bold text-center mb-8">Our Products</h1>
+            <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Products will be loaded here by JavaScript -->
+                <div class="text-center p-8 col-span-full">Loading products...</div>
+            </div>
+        </section>
+
+        <!-- Our Process Page Section (Hidden) -->
+        <section id="process-page" class="page-section" hidden>
+            <h1 class="text-3xl md:text-4xl font-bold text-center mb-8">Our Process</h1>
+            <div class="bg-white p-8 shadow-lg rounded-lg max-w-4xl mx-auto">
+                <p class="text-lg mb-4">Our commitment to quality begins with our process. We combine traditional techniques with modern standards to ensure every brick is perfect.</p>
+                <ol class="list-decimal list-inside space-y-4 text-lg">
+                    <li><span class="font-semibold">Sourcing Materials:</span> We select the finest quality soil and sand from trusted local sources.</li>
+                    <li><span class="font-semibold">Mixing & Blending:</span> Our precise mixture ratios guarantee consistent strength and texture.</li>
+                    <li><span class="font-semibold">Molding & Pressing:</span> State-of-the-art machinery molds and compresses the mixture into uniform shapes.</li>
+                    <li><span class="font-semibold">Drying Process:</span> Bricks are carefully air-dried in controlled environments to prevent cracks.</li>
+                    <li><span class="font-semibold">Kiln Firing:</span> The final step involves firing in our high-temperature kiln, hardening the bricks to last a lifetime.</li>
+                </ol>
+                <span class="text-blue-500 text-lg font-semibold">Note: Processing Images and videos will be available soon.</span> 
+            </div>
+        </section>
+
+        <!-- Gallery Page Section (Hidden) -->
+        <section id="gallery-page" class="page-section" hidden>
+            <h1 class="text-3xl md:text-4xl font-bold text-center mb-8">Product Gallery</h1>
+             <div class="bg-white p-8 shadow-lg rounded-lg">
+                <p class="text-lg text-center mb-6">See what products BrickWorks Pro built.</p>
+                
+                <!-- === IMAGE GALLERY UPDATED === -->
+                <!-- We are now using relative paths to our 'images' folder -->
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="rounded-lg shadow-md overflow-hidden">
+                        <img src="./images/red-brick.jpg" alt="Modern Home" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/600x400/cccccc/FFFFFF?text=Image+Not+Found'">
+                    </div>
+                     <div class="rounded-lg shadow-md overflow-hidden">
+                        <img src="./images/cement-brick.jpg" alt="Apartment Complex" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/600x400/cccccc/FFFFFF?text=Image+Not+Found'">
+                    </div>
+                     <div class="rounded-lg shadow-md overflow-hidden">
+                        <img src="./images/gattu.jpg" alt="Government Building" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/600x400/cccccc/FFFFFF?text=Image+Not+Found'">
+                    </div>
+                </div>
+            </div>
+            </br>
+            <h1 class="text-3xl md:text-4xl font-bold text-center mb-8">Project Gallery</h1>
+            <div class="bg-white p-8 shadow-lg rounded-lg">
+                <p class="text-lg text-center mb-6">See what our customers have built with BrickWorks Pro products.</p>
+                
+                <!-- === IMAGE GALLERY UPDATED === -->
+                <!-- We are now using relative paths to our 'images' folder -->
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="rounded-lg shadow-md overflow-hidden">
+                        <img src="./images/modern-home.jpg" alt="Modern Home" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/600x400/cccccc/FFFFFF?text=Image+Not+Found'">
+                    </div>
+                     <div class="rounded-lg shadow-md overflow-hidden">
+                        <img src="./images/3-Floor-House.jpg" alt="Apartment Complex" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/600x400/cccccc/FFFFFF?text=Image+Not+Found'">
+                    </div>
+                     <div class="rounded-lg shadow-md overflow-hidden">
+                        <img src="./images/cement-home.jpg" alt="Government Building" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/600x400/cccccc/FFFFFF?text=Image+Not+Found'">
+                    </div>
+                     <div class="rounded-lg shadow-md overflow-hidden">
+                        <img src="./images/home.jpg" alt="Villa" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/600x400/cccccc/FFFFFF?text=Image+Not+Found'">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Page Section (Hidden) -->
+        <section id="contact-page" class="page-section" hidden>
+            <h1 class="text-3xl md:text-4xl font-bold text-center mb-8">Contact Us</h1>
+             <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 shadow-lg rounded-lg">
+                    <h2 class="text-2xl font-bold mb-4">Send Us a Message</h2>
+                    <form id="contact-form">
+                        <div class="mb-4">
+                            <label for="contact-name" class="block text-sm font-medium text-gray-700">Name</label>
+                            <input type="text" id="contact-name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="contact-email" class="block text-sm font-medium text-gray-700">Email</label>
+                            <input type="email" id="contact-email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="contact-message" class="block text-sm font-medium text-gray-700">Message</label>
+                            <textarea id="contact-message" rows="4" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700">Send Message</button>
+                    </form>
+                </div>
+                <div class="bg-white p-8 shadow-lg rounded-lg">
+                    <h2 class="text-2xl font-bold mb-4">Our Information</h2>
+                    <address class="not-italic space-y-4 text-lg">
+                        <p><strong>Phone:</strong> +91-9770016640</p>
+                        <p><strong>Email:</strong> info@brickworkspro.com</p>
+                        <p><strong>Address:</strong> Village - Khairi, District - Balaghat, Madhya Pradesh, India (Pincode: 481337)</p>
+                    </address>
+                </div>
+             </div>
+        </section>
+
+        <!-- Get a Quote Page Section (Hidden) -->
+        <section id="quote-page" class="page-section" hidden>
+            <h1 class="text-3xl md:text-4xl font-bold text-center mb-8">Request a Quote</h1>
+            <div class="max-w-2xl mx-auto bg-white p-8 shadow-lg rounded-lg">
+                <form id="quote-form">
+                    <!-- These fields are for customer info. We will collect them
+                         but not send them to the backend yet, as our simple DTO
+                         doesn't have fields for them.
+                    -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="quote-name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                            <input type="text" id="quote-name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" required>
+                        </div>
+                        <div>
+                            <label for="quote-phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                            <input type="tel" id="quote-phone" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" required>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <label for="quote-email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                        <input type="email" id="quote-email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" required>
+                    </div>
+                    <hr class="my-6">
+                    <!-- These are the fields that WILL be sent to the backend -->
+                    <div class="mb-6">
+                        <label for="quote-product" class="block text-sm font-medium text-gray-700">Brick Type</label>
+                        <select id="quote-product" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" required>
+                            <option value="">-- Select a Brick --</option>
+                        </select>
+                    </div>
+                    <div class="mb-6">
+                        <label for="quote-quantity" class="block text-sm font-medium text-gray-700">Quantity</label>
+                        <input type="number" id="quote-quantity" placeholder="e.g., 5000" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" min="1" required>
+                    </div>
+                    <button type="submit" class="w-full bg-red-600 text-white px-8 py-3 rounded-lg text-lg font-medium hover:bg-red-700 transition duration-300">Submit Quote Request</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Admin Login Page Section (Hidden) -->
+        <section id="login-page" class="page-section" hidden>
+            <h1 class="text-3xl md:text-4xl font-bold text-center mb-8">Admin Portal Login</h1>
+            <div class="max-w-md mx-auto bg-white p-8 shadow-lg rounded-lg">
+                <form id="login-form">
+                    <div class="mb-6">
+                        <label for="login-username" class="block text-sm font-medium text-gray-700">Username</label>
+                        <input type="text" id="login-username" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="login-password" class="block text-sm font-medium text-gray-700">Password</label>
+                        <input type="password" id="login-password" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" required>
+                    </div>
+                    <button type="submit" class="w-full bg-red-600 text-white px-8 py-3 rounded-lg text-lg font-medium hover:bg-red-700 transition duration-300">Login</button>
+                </form>
+            </div><br>
+            <h5 class="text-1xl md:text-2xl font-bold text-center mb-4">Admin Dashboard Coming Soon In Next Phase</h5>
+        </section>
+
+        <!-- Message/Status Box -->
+        <div id="status-message" class="hidden fixed top-24 right-6 bg-green-500 text-white p-4 rounded-lg shadow-lg z-50 transition-opacity duration-300">
+            <!-- Message will be set here -->
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 mt-12 py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 BrickWorks Pro. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- Configuration ---
+            const API_URL = "http://localhost:9191";
+            const pageSections = document.querySelectorAll('.page-section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const productGrid = document.getElementById('product-grid');
+            const quoteProductSelect = document.getElementById('quote-product');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const statusMessage = document.getElementById('status-message');
+
+            let allProducts = [];
+
+            // --- Page Navigation ---
+            function showPage(pageId) {
+                pageSections.forEach(section => { section.hidden = true; });
+                const activePage = document.getElementById(pageId + '-page');
+                if (activePage) { activePage.hidden = false; }
+                mobileMenu.classList.add('hidden');
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const pageId = link.getAttribute('data-page');
+                    showPage(pageId);
+                });
+            });
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // --- Status Message Utility ---
+            function showStatus(message, isError = false) {
+                statusMessage.textContent = message;
+                statusMessage.classList.remove(isError ? 'bg-green-500' : 'bg-red-500');
+                statusMessage.classList.add(isError ? 'bg-red-500' : 'bg-green-500');
+                statusMessage.classList.remove('hidden');
+                statusMessage.classList.add('opacity-100');
+                
+                setTimeout(() => {
+                    statusMessage.classList.remove('opacity-100');
+                    statusMessage.classList.add('hidden');
+                }, 3000);
+            }
+
+            // --- Product Loading ---
+            async function fetchProducts() {
+                try {
+                    const response = await fetch(`${API_URL}/api/products`);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    allProducts = await response.json();
+                    renderProducts(allProducts);
+                    populateQuoteSelect(allProducts);
+                } catch (error) {
+                    console.error("Failed to fetch products:", error);
+                    productGrid.innerHTML = `<p class="col-span-full text-center text-red-500">Error loading products. Please make sure the backend services are running.</p>`;
+                }
+            }
+
+            function renderProducts(products) {
+                productGrid.innerHTML = '';
+                if (products.length === 0) {
+                     productGrid.innerHTML = `<p class="col-span-full text-center">No products available at this time.</p>`;
+                     return;
+                }
+
+                products.forEach(product => {
+                    const productCard = document.createElement('div');
+                    productCard.className = 'bg-white shadow-lg rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105';
+                    productCard.innerHTML = `
+                        <img src="https://placehold.co/600x400/993333/FFFFFF?text=${encodeURIComponent(product.name)}" alt="${product.name}" class="w-full h-48 object-cover" onerror="this.src='https://placehold.co/600x400/cccccc/FFFFFF?text=Image+Not+Found'">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2">${product.name}</h3>
+                            <p class="text-gray-700 mb-1"><span class="font-semibold">Type:</span> ${product.brickType}</p>
+                            <p class="text-gray-700 mb-1"><span class="font-semibold">Color:</span> ${product.color}</p>
+                            <p class="text-gray-700 mb-4"><span class="font-semibold">Price:</span> ₹${product.unitPrice.toFixed(2)}</small> (per unit)</p>
+                            <a href="#" class="nav-link-card bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700 transition duration-300" data-page="quote" data-product-id="${product.id}">Get a Quote</a>
+                        </div>
+                    `;
+                    productCard.querySelector('.nav-link-card').addEventListener('click', (e) => {
+                        e.preventDefault();
+                        showPage('quote');
+                        quoteProductSelect.value = e.target.getAttribute('data-product-id');
+                    });
+                    productGrid.appendChild(productCard);
+                });
+            }
+
+            function populateQuoteSelect(products) {
+                quoteProductSelect.innerHTML = '<option value="">-- Select a Brick --</option>';
+                 products.forEach(product => {
+                    const option = document.createElement('option');
+                    option.value = product.id;
+                    option.textContent = `${product.name} (₹${product.unitPrice.toFixed(2)})`;
+                    quoteProductSelect.appendChild(option);
+                 });
+            }
+
+            // --- Form Submissions ---
+
+            // Admin Login Form
+            document.getElementById('login-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const username = document.getElementById('login-username').value;
+                const password = document.getElementById('login-password').value;
+
+                try {
+                    const response = await fetch(`${API_URL}/api/auth/login`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ username, password })
+                    });
+                    if (!response.ok) { throw new Error('Incorrect username or password'); }
+                    const data = await response.json();
+                    localStorage.setItem('adminToken', data.jwt); // Store the token
+                    showStatus("Admin login successful!");
+                    document.getElementById('login-form').reset();
+                    showPage('home');
+                } catch (error) {
+                    console.error('Login failed:', error);
+                    showStatus(error.message, true);
+                }
+            });
+
+            // --- "Get a Quote" Form (UPDATED with validation) ---
+            document.getElementById('quote-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const selectedProductId = document.getElementById('quote-product').value;
+                const quantity = document.getElementById('quote-quantity').value;
+
+                // --- THIS IS THE CRITICAL FIX ---
+                // We add this check to prevent submitting an empty/invalid product ID.
+                if (!selectedProductId) {
+                    showStatus("Please select a brick type.", true);
+                    return; // Stop the function here
+                }
+                
+                const quoteRequest = {
+                    customerId: 0, // Placeholder 0 for a public "guest" quote
+                    items: [
+                        {
+                            productId: parseInt(selectedProductId),
+                            quantity: parseInt(quantity)
+                        }
+                    ]
+                };
+                
+                try {
+                    // Call the NEW public endpoint
+                    const response = await fetch(`${API_URL}/api/orders/public-quote`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(quoteRequest)
+                    });
+                    
+                    if (!response.ok) {
+                        // --- THIS IS THE NEW ERROR HANDLING ---
+                        let errorMsg = 'Quote submission failed. Please try again.';
+                        try {
+                            // Try to get a specific message from Spring Boot
+                            const errorData = await response.json();
+                            // Check for Spring's specific "error" field
+                            errorMsg = errorData.error || errorData.message || `Error ${response.status}`;
+                        } catch (jsonError) {
+                            // If the response isn't JSON, just use the status
+                            errorMsg = `Error: ${response.status} ${response.statusText}`;
+                        }
+                        throw new Error(errorMsg); // Throw the detailed error
+                    }
+                    
+                    const data = await response.json();
+                    console.log("Quote submitted successfully:", data);
+                    
+                    showStatus("Quote request sent successfully! We will contact you soon.");
+                    document.getElementById('quote-form').reset();
+                    
+                    // Go back home after 5 seconds, as requested
+                    setTimeout(() => {
+                        showPage('home'); // Go back home
+                    }, 5000); 
+
+                } catch (error) {
+                    console.error('Quote submission failed:', error);
+                    // This will now show the *detailed* error message (e.g., "Forbidden")
+                    showStatus(error.message, true); 
+                }
+            });
+
+            // "Contact Us" Form
+            document.getElementById('contact-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                // This is also a simulation for now.
+                showStatus("Message sent successfully! It's a simulation. Back-end will be implemented soon.");
+                document.getElementById('contact-form').reset();
+            });
+
+
+            // --- Initial Load ---
+            fetchProducts();
+
+        });
+    </script>
+
+</body>
+</html>
