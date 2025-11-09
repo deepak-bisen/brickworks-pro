@@ -18,7 +18,8 @@ RUN mvn clean package -DskipTests
 
 # STAGE 2: Create the final, lightweight runtime image
 # Use the correct Eclipse Temurin JRE 21 slim image
-FROM eclipse-temurin:21-jre-slim
+# --- FIX: Using '21-jre-alpine' which is a valid slim JRE image ---
+FROM eclipse-temurin:21-jre-alpine
 
 # Set the working directory for the final application
 WORKDIR /app
