@@ -1,28 +1,36 @@
-# Use a base image with Java 21
-FROM eclipse-temurin:21-jdk
+# STAGE 1: Build the application
+# We use a base image that includes Maven and JDK 21
+FROM maven:3.9.6-eclipse-temurin-21 AS build
 
-# Set a working directory
+# Set the working directory in the build stage
 WORKDIR /app
 
-# Copy the Maven wrapper
-COPY .mvn/ .mvn
-COPY mvnw .
+# Copy the entire parent project.
+# This ensures the parent pom.xml and all sibling modules are available.
+COPY brickworks-pro-backend/brickworks-pro-parent/ .
 
-# Copy the pom.xml and download dependencies
-COPY pom.xml .
+# Change the working directory to the api-gateway service
+WORKDIR /app/api-gateway
 
-# Make the Maven wrapper executable
-RUN chmod +x ./mvnw
+# Run the Maven package command.
+# This builds ONLY this module and its dependencies.
+RUN mvn clean package -DskipTests
 
-RUN ./mvnw dependency:go-offline
+# STAGE 2: Create the final, lightweight runtime image
+# Use the correct Eclipse Temurin JRE 21 slim image
+FROM eclipse-temurin:21-jre-slim
 
-# Copy the rest of the source code and build the app
-COPY src ./src
-RUN ./mvnw clean package -DskipTests
+# Set the working directory for the final application
+WORKDIR /app
 
-# Expose the port (this is just for documentation)
-# We will set the actual port with an environment variable
+# Copy the built JAR from the 'build' stage into this new image.
+# We find the *.jar and rename it to 'app.jar'.
+COPY --from=build /app/api-gateway/target/*.jar app.jar
+
+# Expose the port your application runs on.
+# The previous Dockerfile screenshot showed 8080.
 EXPOSE 8080
 
-# Run the compiled .jar file
-ENTRYPOINT ["java", "-jar", "target/*.jar"]
+# The command to run the application when the container starts.
+# This uses the predictable 'app.jar' name and avoids the wildcard error.
+ENTRYPOINT ["java", "-jar", "app.jar"]
