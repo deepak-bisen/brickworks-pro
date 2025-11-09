@@ -10,11 +10,16 @@ WORKDIR /app
 COPY . .
 
 # Change the working directory to the api-gateway service
-WORKDIR /app/employee-service
+# --- FIX: We will stay at the parent /app directory ---
+# WORKDIR /app/api-gateway
 
 # Run the Maven package command.
 # This works because the parent pom.xml is now at /app/pom.xml
-RUN mvn clean package -DskipTests
+# --- FIX: Use -pl to specify the project to build from the root ---
+# This is a more robust way to build a single module in a monorepo.
+# -pl : build only the 'api-gateway' project
+# -am : also build any dependencies of 'api-gateway'
+RUN mvn clean package -pl employee-service -am -DskipTests
 
 # STAGE 2: Create the final, lightweight runtime image
 # Use the correct Eclipse Temurin JRE 21 slim image
