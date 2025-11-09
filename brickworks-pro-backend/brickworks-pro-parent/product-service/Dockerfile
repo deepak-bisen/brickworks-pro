@@ -10,6 +10,10 @@ COPY mvnw .
 
 # Copy the pom.xml and download dependencies
 COPY pom.xml .
+
+# Make the Maven wrapper executable
+RUN chmod +x ./mvnw
+
 RUN ./mvnw dependency:go-offline
 
 # Copy the rest of the source code and build the app
