@@ -1,28 +1,46 @@
 # Use a base image with Java 21
-FROM eclipse-temurin:21-jdk
+#FROM eclipse-temurin:21-jdk
 
-# Set a working directory
+# STAGE 1: Build the application
+# We use a base image that includes Maven and JDK 17
+FROM maven:3.8.5-openjdk-21-slim AS build
+
+# Set the working directory in the build stage
 WORKDIR /app
 
-# Copy the Maven wrapper
-COPY .mvn/ .mvn
-COPY mvnw .
+# Copy the entire parent project.
+# This ensures the parent pom.xml and all sibling modules (which might be
+# dependencies) are available in the build context.
+# Paths are relative to the repository root.
+COPY brickworks-pro-backend/brickworks-pro-parent/ .
 
-# Copy the pom.xml and download dependencies
-COPY pom.xml .
+# Change the working directory to the specific service we want to build
+WORKDIR /app/service-registry
 
-# Make the Maven wrapper executable
-RUN chmod +x ./mvnw
+# Run the Maven package command.
+# Maven will automatically find the parent pom.xml in /app/
+# This builds ONLY this module and its dependencies.
+RUN mvn clean package -DskipTests
 
-RUN ./mvnw dependency:go-offline
+# STAGE 2: Create the final, lightweight runtime image
+# We use a slim JRE (Java Runtime Environment) image, which is smaller
+FROM openjdk:17-slim
 
-# Copy the rest of the source code and build the app
-COPY src ./src
-RUN ./mvnw clean package -DskipTests
+# Set the working directory for the final application
+WORKDIR /app
 
-# Expose the port (this is just for documentation)
-# We will set the actual port with an environment variable
-EXPOSE 8080
+# --- This is the key fix ---
+# Copy the built JAR from the 'build' stage into this new image.
+# This command finds the wildcard *.jar (e.g., service-registry-0.0.1.jar)
+# and renames it to a simple, predictable 'app.jar'.
+COPY --from=build /app/service-registry/target/*.jar app.jar
 
-# Run the compiled .jar file
-ENTRYPOINT ["java", "-jar", "target/*.jar"]
+# Expose the port your application runs on.
+# For a Spring Cloud/Eureka service registry, the default is 8761.
+# Change this if you have configured a different port.
+EXPOSE 8761
+
+# The command to run the application when the container starts.
+# We use the 'exec' form (brackets) and the predictable 'app.jar' name.
+# This avoids the wildcard issue that caused the crash.
+ENTRYPOINT ["java", "-jar", "app.jar"]
