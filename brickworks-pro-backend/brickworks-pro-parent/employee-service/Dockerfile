@@ -6,14 +6,15 @@ FROM maven:3.9.6-eclipse-temurin-21 AS build
 WORKDIR /app
 
 # Copy the entire parent project and all its sub-modules (all services)
-# The build context (set in Railway) is 'brickworks-pro-backend/brickworks-pro-parent'
+# The build context is now 'brickworks-pro-backend/brickworks-pro-parent'
 COPY . .
 
-# Run the Maven package command from the root.
-# This is the correct way to build a single module in a monorepo.
-# -pl : build only the 'employee-service' project
-# -am : also build any dependencies of 'employee-service'
-RUN mvn clean package -pl employee-service -am -DskipTests
+# Change the working directory to the api-gateway service
+WORKDIR /app/employee-service
+
+# Run the Maven package command.
+# This works because the parent pom.xml is now at /app/pom.xml
+RUN mvn clean package -DskipTests
 
 # STAGE 2: Create the final, lightweight runtime image
 # Use the correct Eclipse Temurin JRE 21 slim image
@@ -23,12 +24,10 @@ FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 
 # Copy the built JAR from the 'build' stage into this new image.
-# We know the path because we built the 'employee-service' module.
 COPY --from=build /app/employee-service/target/*.jar app.jar
 
 # Expose the port your application runs on.
-# !!! IMPORTANT: Update this port to match your employee-service port (e.g., 8081) !!!
-EXPOSE 8081
+EXPOSE 8080
 
 # The command to run the application when the container starts.
 ENTRYPOINT ["java", "-jar", "app.jar"]
