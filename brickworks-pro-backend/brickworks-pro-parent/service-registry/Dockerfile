@@ -1,9 +1,6 @@
-# Use a base image with Java 21
-FROM eclipse-temurin:21-jdk
-
 # STAGE 1: Build the application
-# We use a base image that includes Maven and JDK 17
-#FROM maven:3.8.5-openjdk-17-slim AS build
+# We use a base image that includes Maven and JDK 21
+FROM maven:3.9.6-eclipse-temurin-21 AS build
 
 # Set the working directory in the build stage
 WORKDIR /app
@@ -24,7 +21,7 @@ RUN mvn clean package -DskipTests
 
 # STAGE 2: Create the final, lightweight runtime image
 # We use a slim JRE (Java Runtime Environment) image, which is smaller
-FROM eclipse-temurin:21-jdk
+FROM openjdk:21-slim
 
 # Set the working directory for the final application
 WORKDIR /app
