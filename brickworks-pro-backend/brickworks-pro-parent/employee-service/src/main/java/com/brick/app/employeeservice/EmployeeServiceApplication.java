@@ -8,8 +8,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @EnableDiscoveryClient
 public class EmployeeServiceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(EmployeeServiceApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(EmployeeServiceApplication.class, args);
+    }
 
 }
