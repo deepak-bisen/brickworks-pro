@@ -24,6 +24,9 @@ public class Product {
     @Column
     private int stockQuantity;
 
+    @Column(length = 1024) // Allow for long URLs
+    private String imageUrl;
+
  public Long getId() {
   return productId;
  }
@@ -71,4 +74,12 @@ public class Product {
  public void setStockQuantity(int stockQuantity) {
   this.stockQuantity = stockQuantity;
  }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 }
