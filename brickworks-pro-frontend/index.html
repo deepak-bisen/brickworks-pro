@@ -395,6 +395,8 @@
                 
                 const selectedProductId = document.getElementById('quote-product').value;
                 const quantity = document.getElementById('quote-quantity').value;
+                 // --- NEW LINE TO GET LOCATION ---
+                const deliveryLocation = document.getElementById('quote-location').value;
 
                 // --- THIS IS THE CRITICAL FIX ---
                 // We add this check to prevent submitting an empty/invalid product ID.
@@ -402,9 +404,10 @@
                     showStatus("Please select a brick type.", true);
                     return; // Stop the function here
                 }
-                
+                // --- UPDATED REQUEST OBJECT ---
                 const quoteRequest = {
                     customerId: 0, // Placeholder 0 for a public "guest" quote
+                    deliveryLocation: deliveryLocation, // <-- ADDED
                     items: [
                         {
                             productId: parseInt(selectedProductId),
