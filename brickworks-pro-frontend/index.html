@@ -448,14 +448,68 @@
                 }
             });
 
-            // "Contact Us" Form
-            document.getElementById('contact-form').addEventListener('submit', (e) => {
-                e.preventDefault();
-                // This is also a simulation for now.
-                showStatus("Message sent successfully! It's a simulation. Back-end will be implemented soon.");
-                document.getElementById('contact-form').reset();
-            });
+            // --- "Contact Us" Form (THIS IS THE UPDATED SECTION) ---
+            const contactForm = document.getElementById('contact-form');
+            
+            // FIX: Remove this line from here
+            // const contactSubmitButton = document.getElementById('contact-submit-button');
 
+            contactForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                // FIX: Get the submit button *inside* the event listener
+                // We find it relative to the form itself for robustness
+                const contactSubmitButton = contactForm.querySelector('button[type="submit"]');
+                
+                contactSubmitButton.disabled = true;
+                contactSubmitButton.textContent = "Sending...";
+
+                const contactData = {
+                    name: document.getElementById('contact-name').value,
+                    email: document.getElementById('contact-email').value,
+                    message: document.getElementById('contact-message').value
+                };
+
+                try {
+                    // Call our NEW endpoint via the API Gateway
+                    const response = await fetch(`${API_URL}/api/v1/contact`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(contactData)
+                    });
+
+                    if (!response.ok) {
+                        let errorMsg = 'Message failed to send.';
+                        try {
+                            // Try to get validation errors from Spring Boot
+                            const errorData = await response.json();
+                            if (errorData.errors) {
+                                // Join multiple validation errors
+                                errorMsg = Object.values(errorData.errors).join(', ');
+                            } else {
+                                errorMsg = errorData.message || `Error: ${response.status}`;
+                            }
+                        } catch (jsonError) {
+                            errorMsg = `Error: ${response.status} ${response.statusText}`;
+                        }
+                        throw new Error(errorMsg);
+                    }
+
+                    // Success!
+                    await response.json();
+                    showStatus("Message sent successfully! We will get back to you soon.");
+                    contactForm.reset();
+
+                } catch (error) {
+                    console.error('Contact form submission failed:', error);
+                    showStatus(error.message, true);
+                } finally {
+                    // Re-enable the button whether it succeeded or failed
+                    contactSubmitButton.disabled = false;
+                    contactSubmitButton.textContent = "Send Message";
+                }
+            });
+            // --- END OF UPDATED SECTION ---
 
             // --- Initial Load ---
             fetchProducts();

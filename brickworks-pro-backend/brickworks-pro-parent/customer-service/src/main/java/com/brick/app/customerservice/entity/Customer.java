@@ -1,4 +1,4 @@
-package com.brick.app.customerservice.Entity;
+package com.brick.app.customerservice.entity;
 
 import jakarta.persistence.*;
 

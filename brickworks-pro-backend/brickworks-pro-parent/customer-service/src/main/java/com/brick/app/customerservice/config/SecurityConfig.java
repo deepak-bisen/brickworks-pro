@@ -24,7 +24,11 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 // Define authorization rules
                 .authorizeHttpRequests(auth -> auth
-                        // RULE: ANY request to this service MUST be authenticated.
+                        // --- NEW RULE ---
+                        // Allow anyone to POST to the new contact form endpoint
+                        .requestMatchers(HttpMethod.POST, "/api/v1/contact").permitAll()
+
+                        // Original rule: ANY other request to this service MUST be authenticated.
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));

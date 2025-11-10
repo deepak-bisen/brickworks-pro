@@ -1,6 +1,6 @@
 package com.brick.app.customerservice.controller;
 
-import com.brick.app.customerservice.Entity.Customer;
+import com.brick.app.customerservice.entity.Customer;
 import com.brick.app.customerservice.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
