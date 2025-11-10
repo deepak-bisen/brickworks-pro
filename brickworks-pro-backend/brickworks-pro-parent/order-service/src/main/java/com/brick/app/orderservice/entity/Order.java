@@ -34,6 +34,10 @@ public class Order {
     @Column
     private Double totalCost;
 
+    // --- NEW FIELD ---
+    @Column(length = 500) // 500 characters for a full address
+    private String deliveryLocation;
+
     public Long getOrderId() {
         return orderId;
     }
@@ -80,5 +84,13 @@ public class Order {
 
     public void setTotalCost(Double totalCost) {
         this.totalCost = totalCost;
+    }
+
+    public String getDeliveryLocation() {
+        return deliveryLocation;
+    }
+
+    public void setDeliveryLocation(String deliveryLocation) {
+        this.deliveryLocation = deliveryLocation;
     }
 }
