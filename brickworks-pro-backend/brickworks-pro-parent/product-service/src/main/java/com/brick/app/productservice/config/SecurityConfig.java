@@ -63,11 +63,18 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
+                        // RULE 1: Allow ANYONE (public) to view products
                         // --- THIS IS THE CORRECTED LINE ---
                         // It now matches /api/products AND /api/products/1, /api/products/2, etc.
                         .requestMatchers(HttpMethod.GET, "/api/products/**").permitAll()
 
                         // All other requests (POST, PUT, DELETE) are still protected.
+                        // RULE 2: Allow ONLY authenticated users (admin) to create, update, or delete products.
+                        .requestMatchers(HttpMethod.POST, "/api/products").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/api/products/**").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/api/products/**").authenticated()
+
+                        // RULE 3: All other requests (if any) are denied by default.
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
@@ -77,4 +84,3 @@ public class SecurityConfig {
         return http.build();
     }
 }
-
