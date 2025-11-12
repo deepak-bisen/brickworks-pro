@@ -61,4 +61,24 @@ public class ProductController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    /**
+     * Updates an existing product by its ID.
+     * This is a protected endpoint and requires an authenticated JWT.
+     *
+     * @param id The ID of the product to update.
+     * @param productDetails The new product data from the request body.
+     * @return A 200 OK response with the updated product, or 404 Not Found.
+     */
+    @PutMapping("/{id}")
+    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product productDetails) {
+        try {
+            Product updatedProduct = productService.updateProduct(id, productDetails);
+            // Return 200 OK with the updated product
+            return ResponseEntity.ok(updatedProduct);
+        } catch (RuntimeException e) {
+            // If the service throws "Product not found", return 404
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
