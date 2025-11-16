@@ -2,7 +2,7 @@ package com.brick.app.productservice.controller;
 
 import com.brick.app.productservice.model.Product;
 import com.brick.app.productservice.repository.ProductRepository;
-import com.brick.app.productservice.service.ProductService;
+import com.brick.app.productservice.service.impl.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ public class ProductController {
     private ProductRepository productRepository;
 
     @Autowired
-    private ProductService productService;
+    private ProductServiceImpl productServiceImpl;
 
     @GetMapping
     public List<Product> getAllProducts(){
@@ -28,7 +28,7 @@ public class ProductController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable Long id){
-        return productService.getProductById(id)
+        return productServiceImpl.getProductById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
@@ -50,7 +50,7 @@ public class ProductController {
    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         try {
-            productService.deleteProduct(id);
+            productServiceImpl.deleteProduct(id);
             System.out.println("deletion successful");
             // Return a 204 No Content status, which is the standard for a successful DELETE.
             return ResponseEntity.noContent().build();
@@ -73,7 +73,7 @@ public class ProductController {
     @PutMapping("/{id}")
     public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product productDetails) {
         try {
-            Product updatedProduct = productService.updateProduct(id, productDetails);
+            Product updatedProduct = productServiceImpl.updateProduct(id, productDetails);
             // Return 200 OK with the updated product
             return ResponseEntity.ok(updatedProduct);
         } catch (RuntimeException e) {

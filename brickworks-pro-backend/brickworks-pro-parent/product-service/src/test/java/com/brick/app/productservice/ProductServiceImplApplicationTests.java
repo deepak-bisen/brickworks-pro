@@ -1,10 +1,10 @@
-package com.brick.app.orderservice;
+package com.brick.app.productservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class OrderServiceApplicationTests {
+class ProductServiceImplApplicationTests {
 
 	@Test
 	void contextLoads() {
