@@ -20,8 +20,7 @@ import java.util.function.Function;
 @Service
 public class JwtUtil {
 
-    // A secret key to sign the JWT. In a real production app, this should be a much more complex
-    // and secure key, stored safely (e.g., in environment variables).
+    // A secret key to sign the JWT.
     // private String SECRET_KEY = "brickworks_secret_key";
 
     // A more secure, longer secret key. Must be long enough for the HS256 algorithm.
