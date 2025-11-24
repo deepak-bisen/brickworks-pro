@@ -43,7 +43,7 @@ public class AuthController {
         return employeeRepository.save(employee);
     }
 
-    //Endpoint for logging inj and receiving a JWT
+    //Endpoint for logging and receiving a JWT
     @PostMapping("/login")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthRequest authRequest) throws Exception{
         try{

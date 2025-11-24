@@ -1,6 +1,6 @@
 package com.brick.app.customerservice.controller;
 
-import com.brick.app.customerservice.dto.ContactFormRequest;
+import com.brick.app.customerservice.dto.ContactMessageRequest;
 import com.brick.app.customerservice.service.ContactService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +23,7 @@ public class ContactController {
      * Public endpoint to receive "Contact Us" form submissions.
      */
     @PostMapping
-    public ResponseEntity<?> submitContactForm(@Valid @RequestBody ContactFormRequest request) {
+    public ResponseEntity<?> submitContactForm(@Valid @RequestBody ContactMessageRequest request) {
         // The @Valid annotation triggers the validation rules in the DTO.
         // If validation fails, Spring Boot will automatically return a 400 Bad Request.
 

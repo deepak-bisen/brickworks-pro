@@ -6,8 +6,8 @@ import jakarta.persistence.*;
 @Table(name = "CUSTOMERS")
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long custId;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String customerId;
 
     @Column(nullable = false)
     private String name;
@@ -21,12 +21,13 @@ public class Customer {
     @Column
     private String address;
 
-    public Long getId() {
-        return custId;
+    // --- Getter and Setters ---
+    public String getId() {
+        return customerId;
     }
 
-    public void setId(Long custId) {
-        this.custId = custId;
+    public void setId(String customerId) {
+        this.customerId = customerId;
     }
 
     public String getName() {

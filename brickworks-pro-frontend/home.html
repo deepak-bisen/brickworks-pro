@@ -724,6 +724,8 @@
                         }
                         throw new Error(errorMsg);
                     }
+                    const data = await response.json();
+                    console.log("Quote submitted successfully:", data);
                     
                     showStatus("Quote request sent successfully! We will contact you soon.");
                     document.getElementById('quote-form').reset();

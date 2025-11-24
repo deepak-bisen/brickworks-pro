@@ -51,10 +51,7 @@ public class OrderServiceImpl {
         order.setCustomerId(orderRequest.getCustomerId() != null ? orderRequest.getCustomerId() : 0L); // Use 0 for guest
         order.setOrderDate(LocalDateTime.now());
         order.setStatus(status); // Use the status we passed in
-        // --- THIS IS THE NEW LINE ---
-        // Save the delivery location from the DTO into the order
         order.setDeliveryLocation(orderRequest.getDeliveryLocation());
-        // --- END OF NEW LINE ---
 
         List<OrderDetails> orderDetails = new ArrayList<>();
         double totalCost = 0.0;

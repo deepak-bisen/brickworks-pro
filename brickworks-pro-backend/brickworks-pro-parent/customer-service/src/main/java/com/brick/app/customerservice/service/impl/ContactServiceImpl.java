@@ -1,6 +1,6 @@
 package com.brick.app.customerservice.service.impl;
 
-import com.brick.app.customerservice.dto.ContactFormRequest;
+import com.brick.app.customerservice.dto.ContactMessageRequest;
 import com.brick.app.customerservice.entity.ContactMessage;
 import com.brick.app.customerservice.repository.ContactMessageRepository;
 import com.brick.app.customerservice.service.ContactService;
@@ -26,7 +26,7 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     @Transactional
-    public void processContactMessage(ContactFormRequest request) {
+    public void processContactMessage(ContactMessageRequest request) {
         // For now, we will just log the message.
         // In the future, this is where you would send an email or save to a different table.
         log.info("New contact message received! Processing...");

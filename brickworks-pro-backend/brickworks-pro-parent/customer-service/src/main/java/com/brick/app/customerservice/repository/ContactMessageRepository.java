@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  * Spring Data JPA repository for the ContactMessage entity.
  */
 @Repository
-public interface ContactMessageRepository extends JpaRepository<ContactMessage, Long> {
+public interface ContactMessageRepository extends JpaRepository<ContactMessage, String> {
 }

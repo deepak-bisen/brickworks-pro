@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 public class ContactMessage {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
 
     @Column(nullable = false, length = 100)
     private String name;
@@ -31,11 +31,11 @@ public class ContactMessage {
     }
 
     // --- Getters and Setters ---
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
