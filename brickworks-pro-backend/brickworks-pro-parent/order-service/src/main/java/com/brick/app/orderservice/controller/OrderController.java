@@ -2,6 +2,7 @@ package com.brick.app.orderservice.controller;
 
 import com.brick.app.orderservice.entity.Order;
 import com.brick.app.orderservice.dto.OrderRequestDTO;
+import com.brick.app.orderservice.service.OrderService;
 import com.brick.app.orderservice.service.impl.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

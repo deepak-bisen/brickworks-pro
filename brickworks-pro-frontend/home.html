@@ -564,7 +564,7 @@
             document.getElementById('login-form').addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const loginButton = document.getElementById('login-submit-button');
-                loginButton.disabled = true;
+                loginButton.disabled = false;
                 loginButton.textContent = "Logging in...";
 
                 const username = document.getElementById('login-username').value;
@@ -752,7 +752,7 @@
                     email: document.getElementById('contact-email').value,
                     message: document.getElementById('contact-message').value
                 };
-
+                    
                 try {
                     const response = await fetch(`${API_URL}/api/v1/contact`, {
                         method: 'POST',
@@ -763,6 +763,7 @@
                     if (!response.ok) {
                         let errorMsg = 'Message send failed. Please try again.';
                         try {
+
                             const errorData = await response.json();
                             errorMsg = errorData.error || errorData.message || `Error ${response.status}`;
                         } catch (jsonError) {

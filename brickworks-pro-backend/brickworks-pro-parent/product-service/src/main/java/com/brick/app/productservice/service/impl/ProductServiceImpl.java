@@ -2,6 +2,7 @@ package com.brick.app.productservice.service.impl;
 
 import com.brick.app.productservice.model.Product;
 import com.brick.app.productservice.repository.ProductRepository;
+import com.brick.app.productservice.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProductServiceImpl {
+public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductRepository productRepository;
