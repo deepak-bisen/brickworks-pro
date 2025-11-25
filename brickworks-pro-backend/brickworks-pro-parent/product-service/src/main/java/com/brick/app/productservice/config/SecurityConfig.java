@@ -59,9 +59,13 @@ public class SecurityConfig {
 
     private final JwtRequestFilter jwtRequestFilter;
 
-    // FIX: Use constructor injection for the JwtRequestFilter
     public SecurityConfig(JwtRequestFilter jwtRequestFilter) {
         this.jwtRequestFilter = jwtRequestFilter;
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return new ProductUserDetailsServiceImpl();
     }
 
     @Bean
