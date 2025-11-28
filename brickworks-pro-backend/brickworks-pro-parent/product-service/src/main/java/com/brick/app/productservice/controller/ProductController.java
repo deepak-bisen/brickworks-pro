@@ -70,7 +70,7 @@ public class ProductController {
      * @param productDetails The new product data from the request body.
      * @return A 200 OK response with the updated product, or 404 Not Found.
      */
-    @PutMapping("/{id}")
+    @PutMapping("{id}")
     public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product productDetails) {
         try {
             Product updatedProduct = productService.updateProduct(id, productDetails);

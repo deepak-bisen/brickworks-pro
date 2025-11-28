@@ -5,18 +5,16 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
-import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
-@Component
+
 public class JwtRequestFilter extends OncePerRequestFilter {
 
     // FIX: Remove @Autowired. These will be injected via constructor.
@@ -37,10 +35,17 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         String username = null;
         String jwt = null;
-// 1. Check for the Authorization header and the "Bearer " prefix
+
+        // 1. Check for the Authorization header and the "Bearer " prefix
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             jwt = authorizationHeader.substring(7); // Extract the token
-            username = jwtUtil.extractUsername(jwt);
+            try{
+                username = jwtUtil.extractUsername(jwt);
+            } catch (Exception e) {
+                // Token invalid/expired. We log it but don't throw an exception,
+                // allowing the request to proceed (it might be a public endpoint).
+                logger.warn("JWT Token parsing failed: " + e.getMessage());
+            }
         }
 
         // 2. If we have a username and there is no user currently authenticated
