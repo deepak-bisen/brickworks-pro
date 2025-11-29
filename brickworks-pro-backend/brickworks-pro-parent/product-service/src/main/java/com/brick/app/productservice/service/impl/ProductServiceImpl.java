@@ -5,7 +5,9 @@ import com.brick.app.productservice.repository.ProductRepository;
 import com.brick.app.productservice.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,12 +25,16 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findById(id);
     }
 
-    public Product createProduct(Product product) {
+    public Product createProduct(Product product, MultipartFile imageFile) throws IOException {
+        product.setImageName(imageFile.getOriginalFilename());
+        product.setImageType(imageFile.getContentType());
+        product.setImageData(imageFile.getBytes());
         return productRepository.save(product);
     }
 
     /**
      * Deletes a product by its ID.
+     *
      * @param id The ID of the product to delete.
      * @throws RuntimeException if the product is not found.
      */
@@ -42,12 +48,13 @@ public class ProductServiceImpl implements ProductService {
 
     /**
      * Updates an existing product.
-     * @param id The ID of the product to update.
-     * @param productDetails The new details for the product.
+     *
+     * @param id : The ID of the product to update.
+     * @param productDetails : The new details for the product.
      * @return The updated product.
      * @throws RuntimeException if the product is not found.
      */
-    public Product updateProduct(Long id, Product productDetails) {
+    public Product updateProduct(Long id, Product productDetails, MultipartFile imageFile) throws IOException {
         // Find the existing product
         Product existingProduct = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found with id: " + id));
@@ -59,8 +66,11 @@ public class ProductServiceImpl implements ProductService {
         existingProduct.setUnitPrice(productDetails.getUnitPrice());
         existingProduct.setStockQuantity(productDetails.getStockQuantity());
 
-        // Also update the imageUrl if it's provided in the request
-        existingProduct.setImageUrl(productDetails.getImageUrl());
+        if (imageFile != null && !imageFile.isEmpty()) {
+            existingProduct.setImageName(imageFile.getOriginalFilename());
+            existingProduct.setImageType(imageFile.getContentType());
+            existingProduct.setImageData(imageFile.getBytes());
+        }
 
         // Save the updated product back to the database
         return productRepository.save(existingProduct);
