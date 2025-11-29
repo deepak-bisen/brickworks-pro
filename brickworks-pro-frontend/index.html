@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +14,7 @@
         }
     </style>
 </head>
+
 <body class="bg-gray-100 font-sans text-gray-800">
 
     <!-- Header & Navigation -->
@@ -24,33 +26,52 @@
             <div class="hidden md:flex items-center space-x-6">
                 <!-- Desktop Links -->
                 <a href="#" class="nav-link text-gray-600 hover:text-red-700 font-medium" data-page="home">Home</a>
-                <a href="#" class="nav-link text-gray-600 hover:text-red-700 font-medium" data-page="products">Products</a>
-                <a href="#" class="nav-link text-gray-600 hover:text-red-700 font-medium" data-page="process">Our Process</a>
-                <a href="#" class="nav-link text-gray-600 hover:text-red-700 font-medium" data-page="gallery">Gallery</a>
-                <a href="#" class="nav-link text-gray-600 hover:text-red-700 font-medium" data-page="contact">Contact</a>
+                <a href="#" class="nav-link text-gray-600 hover:text-red-700 font-medium"
+                    data-page="products">Products</a>
+                <a href="#" class="nav-link text-gray-600 hover:text-red-700 font-medium" data-page="process">Our
+                    Process</a>
+                <a href="#" class="nav-link text-gray-600 hover:text-red-700 font-medium"
+                    data-page="gallery">Gallery</a>
+                <a href="#" class="nav-link text-gray-600 hover:text-red-700 font-medium"
+                    data-page="contact">Contact</a>
 
-                
+
                 <!-- Desktop Buttons -->
-                 <a href="#" class="nav-link bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition duration-300" data-page="quote">Get a Quote</a>
-                
+                <a href="#"
+                    class="nav-link bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition duration-300"
+                    data-page="quote">Get a Quote</a>
+
                 <!-- NEW: Admin Dashboard Link (hidden by default) -->
-                <a href="#" id="admin-dashboard-link" class="nav-link text-blue-600 hover:text-blue-800 font-medium" data-page="admin-dashboard" hidden>Admin Dashboard</a>
-                
+                <a href="#" id="admin-dashboard-link" class="nav-link text-blue-600 hover:text-blue-800 font-medium"
+                    data-page="admin-dashboard" hidden>Admin Dashboard</a>
+
                 <!-- Login/Logout Buttons -->
-                <a href="#" id="admin-login-link" class="nav-link text-gray-600 hover:text-red-700" data-page="login" title="Admin Login">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                <a href="#" id="admin-login-link" class="nav-link text-gray-600 hover:text-red-700" data-page="login"
+                    title="Admin Login">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                    </svg>
                 </a>
                 <!-- NEW: Logout Button (hidden by default) -->
                 <a href="#" id="logout-link" class="nav-link text-gray-600 hover:text-red-700" title="Logout" hidden>
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                        </path>
+                    </svg>
                 </a>
             </div>
 
             <!-- Mobile Menu Button (Hamburger) -->
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-gray-800 focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
             </div>
@@ -59,18 +80,25 @@
         <!-- Mobile Menu (Dropdown) -->
         <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
             <a href="#" class="nav-link block px-6 py-3 text-gray-600 hover:bg-gray-100" data-page="home">Home</a>
-            <a href="#" class="nav-link block px-6 py-3 text-gray-600 hover:bg-gray-100" data-page="products">Products</a>
-            <a href="#" class="nav-link block px-6 py-3 text-gray-600 hover:bg-gray-100" data-page="process">Our Process</a>
+            <a href="#" class="nav-link block px-6 py-3 text-gray-600 hover:bg-gray-100"
+                data-page="products">Products</a>
+            <a href="#" class="nav-link block px-6 py-3 text-gray-600 hover:bg-gray-100" data-page="process">Our
+                Process</a>
             <a href="#" class="nav-link block px-6 py-3 text-gray-600 hover:bg-gray-100" data-page="gallery">Gallery</a>
             <a href="#" class="nav-link block px-6 py-3 text-gray-600 hover:bg-gray-100" data-page="contact">Contact</a>
-            <a href="#" class="nav-link block px-6 py-3 text-red-600 font-bold hover:bg-gray-100" data-page="quote">Get a Quote</a>
+            <a href="#" class="nav-link block px-6 py-3 text-red-600 font-bold hover:bg-gray-100" data-page="quote">Get
+                a Quote</a>
             <!-- NEW: Admin Dashboard Link (Mobile) -->
-            <a href="#" id="admin-dashboard-link-mobile" class="nav-link block px-6 py-3 text-blue-600 font-medium hover:bg-gray-100" data-page="admin-dashboard" hidden>Admin Dashboard</a>
-            
+            <a href="#" id="admin-dashboard-link-mobile"
+                class="nav-link block px-6 py-3 text-blue-600 font-medium hover:bg-gray-100" data-page="admin-dashboard"
+                hidden>Admin Dashboard</a>
+
             <!-- Login/Logout Links (Mobile) -->
-            <a href="#" id="admin-login-link-mobile" class="nav-link block px-6 py-3 text-gray-600 hover:bg-gray-100" data-page="login">Admin Login</a>
-            <a href="#" id="logout-link-mobile" class="nav-link block px-6 py-3 text-red-600 hover:bg-gray-100" hidden>Logout</a>
-       </div>
+            <a href="#" id="admin-login-link-mobile" class="nav-link block px-6 py-3 text-gray-600 hover:bg-gray-100"
+                data-page="login">Admin Login</a>
+            <a href="#" id="logout-link-mobile" class="nav-link block px-6 py-3 text-red-600 hover:bg-gray-100"
+                hidden>Logout</a>
+        </div>
     </header>
 
     <!-- Main Content Area -->
@@ -80,12 +108,17 @@
         <section id="home-page" class="page-section">
             <div class="bg-white shadow-lg rounded-lg overflow-hidden">
                 <!-- Responsive Hero Image -->
-                <div class="h-48 md:h-64 lg:h-80 bg-cover bg-center" style="background-image: url('https://placehold.co/1200x400/993333/FFFFFF?text=Modern+Brick+Building')">
+                <div class="h-48 md:h-64 lg:h-80 bg-cover bg-center"
+                    style="background-image: url('https://placehold.co/1200x400/993333/FFFFFF?text=Modern+Brick+Building')">
                 </div>
                 <div class="p-8 text-center">
-                    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">High-Quality Bricks for Your Next Project</h1>
-                    <p class="text-lg text-gray-700 mb-8">Durable, reliable bricks made from the finest local soil & sand.</p>
-                    <a href="#" class="nav-link bg-red-600 text-white px-8 py-3 rounded-lg text-lg font-medium hover:bg-red-700 transition duration-300" data-page="products">View Our Products</a>
+                    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">High-Quality Bricks for Your Next
+                        Project</h1>
+                    <p class="text-lg text-gray-700 mb-8">Durable, reliable bricks made from the finest local soil &
+                        sand.</p>
+                    <a href="#"
+                        class="nav-link bg-red-600 text-white px-8 py-3 rounded-lg text-lg font-medium hover:bg-red-700 transition duration-300"
+                        data-page="products">View Our Products</a>
                 </div>
             </div>
         </section>
@@ -103,55 +136,64 @@
         <section id="process-page" class="page-section" hidden>
             <h1 class="text-3xl md:text-4xl font-bold text-center mb-8">Our Process</h1>
             <div class="bg-white p-8 shadow-lg rounded-lg max-w-4xl mx-auto">
-                <p class="text-lg mb-4">Our commitment to quality begins with our process. We combine traditional techniques with modern standards to ensure every brick is perfect.</p>
+                <p class="text-lg mb-4">Our commitment to quality begins with our process. We combine traditional
+                    techniques with modern standards to ensure every brick is perfect.</p>
                 <ol class="list-decimal list-inside space-y-4 text-lg">
-                    <li><span class="font-semibold">Sourcing Materials:</span> We select the finest quality soil and sand from trusted local sources.</li>
-                    <li><span class="font-semibold">Mixing & Blending:</span> Our precise mixture ratios guarantee consistent strength and texture.</li>
-                    <li><span class="font-semibold">Molding & Pressing:</span> State-of-the-art machinery molds and compresses the mixture into uniform shapes.</li>
-                    <li><span class="font-semibold">Drying Process:</span> Bricks are carefully air-dried in controlled environments to prevent cracks.</li>
-                    <li><span class="font-semibold">Kiln Firing:</span> The final step involves firing in our high-temperature kiln, hardening the bricks to last a lifetime.</li>
+                    <li><span class="font-semibold">Sourcing Materials:</span> We select the finest quality soil and
+                        sand from trusted local sources.</li>
+                    <li><span class="font-semibold">Mixing & Blending:</span> Our precise mixture ratios guarantee
+                        consistent strength and texture.</li>
+                    <li><span class="font-semibold">Molding & Pressing:</span> State-of-the-art machinery molds and
+                        compresses the mixture into uniform shapes.</li>
+                    <li><span class="font-semibold">Drying Process:</span> Bricks are carefully air-dried in controlled
+                        environments to prevent cracks.</li>
+                    <li><span class="font-semibold">Kiln Firing:</span> The final step involves firing in our
+                        high-temperature kiln, hardening the bricks to last a lifetime.</li>
                 </ol>
-                <span class="text-blue-500 text-lg font-semibold">Note: Processing Images and videos will be available soon.</span> 
+                <span class="text-blue-500 text-lg font-semibold">Note: Processing Images and videos will be available
+                    soon.</span>
             </div>
         </section>
 
         <!-- Gallery Page Section (Hidden) -->
-        <section id="gallery-page" class="page-section" hidden>
-            <h1 class="text-3xl md:text-4xl font-bold text-center mb-8">Product Gallery</h1>
-             <div class="bg-white p-8 shadow-lg rounded-lg">
-                <!-- === PRODUCT GALLERY UPDATED === -->
-                <!-- We are now using relative paths to our 'images' folder -->
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="rounded-lg shadow-md overflow-hidden">
-                        <img src="./images/red-brick.jpg" alt="red brick" class="w-full h-64 object-contain" onerror="this.src='https://placehold.co/600x400/cccccc/FFFFFF?text=Image+Not+Found'">
-                    </div>
-                     <div class="rounded-lg shadow-md overflow-hidden">
-                        <img src="./images/cement-brick.jpg" alt="cement brick" class="w-full h-64 object-contain" onerror="this.src='https://placehold.co/600x400/cccccc/FFFFFF?text=Image+Not+Found'">
-                    </div>
-                     <div class="rounded-lg shadow-md overflow-hidden">
-                        <img src="./images/gattu.jpg" alt="paver block" class="w-full h-64 object-contain" onerror="this.src='https://placehold.co/600x400/cccccc/FFFFFF?text=Image+Not+Found'">
+        <section id="gallery-page" class="page-section h-[calc(100vh-6rem)] overflow-hidden" hidden>
+            <div class="h-full flex flex-col gap-0 p-0 ">
+
+                <div class="bg-white p-0 flex-1 overflow-y-auto min-h-0 relative border-b border-gray-200">
+
+                    <h1
+                        class="text-3xl md:text-4xl font-bold text-center mb-0 sticky top-0 left-0 w-full bg-white z-20 py-2 border-b border-gray-100">
+                        Product Gallery
+                    </h1>
+
+                    <div id="gallery-product-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6 p-4">
+                        <p class="col-span-full text-center text-gray-500 py-10">Loading gallery...</p>
                     </div>
                 </div>
-            </div>
-            </br>
-            <h1 class="text-3xl md:text-4xl font-bold text-center mb-8">Project Gallery</h1>
-            <div class="bg-white p-8 shadow-lg rounded-lg">
-                <!-- === PROJECT GALLERY UPDATED === -->
-                <!-- We are now using relative paths to our 'images' folder -->
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="rounded-lg shadow-md overflow-hidden">
-                        <img src="./images/modern-home.jpg" alt="Modern Home" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/600x400/cccccc/FFFFFF?text=Image+Not+Found'">
-                    </div>
-                     <div class="rounded-lg shadow-md overflow-hidden">
-                        <img src="./images/3-Floor-House.jpg" alt="Apartment Complex" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/600x400/cccccc/FFFFFF?text=Image+Not+Found'">
-                    </div>
-                     <div class="rounded-lg shadow-md overflow-hidden">
-                        <img src="./images/cement-home.jpg" alt="Government Building" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/600x400/cccccc/FFFFFF?text=Image+Not+Found'">
-                    </div>
-                     <div class="rounded-lg shadow-md overflow-hidden">
-                        <img src="./images/home.jpg" alt="Villa" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/600x400/cccccc/FFFFFF?text=Image+Not+Found'">
+                <br>
+
+                <div class="bg-white p-0 shadow-lg rounded-none flex-1 overflow-y-auto min-h-0 relative">
+                    <!-- === PROJECT GALLERY UPDATED === -->
+                    <h1 class="text-3xl md:text-4xl font-bold text-center mb-0 sticky top-0 bg-white z-20 py-2">Project
+                        Gallery</h1>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
+                        <div class="rounded-lg shadow-md overflow-hidden">
+                            <img src="./images/modern-home.jpg" alt="Modern Home" class="w-full h-64 object-cover"
+                                onerror="this.src='https://placehold.co/600x400/cccccc/FFFFFF?text=Image+Not+Found'">
+                        </div>
+                        <div class="rounded-lg shadow-md overflow-hidden">
+                            <img src="./images/home-2.jpg" alt="simple home" class="w-full h-64 object-cover"
+                                onerror="this.src='https://placehold.co/600x400/cccccc/FFFFFF?text=Image+Not+Found'">
+                        </div>
+                        <div class="rounded-lg shadow-md overflow-hidden">
+                            <img src="./images/cement-home.jpg" alt="Government Building"
+                                class="w-full h-64 object-cover"
+                                onerror="this.src='https://placehold.co/600x400/cccccc/FFFFFF?text=Image+Not+Found'">
+                        </div>
+                        <div class="rounded-lg shadow-md overflow-hidden">
+                            <img src="./images/home.jpg" alt="Villa" class="w-full h-64 object-cover"
+                                onerror="this.src='https://placehold.co/600x400/cccccc/FFFFFF?text=Image+Not+Found'">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -160,23 +202,31 @@
         <!-- Contact Page Section (Hidden) -->
         <section id="contact-page" class="page-section" hidden>
             <h1 class="text-3xl md:text-4xl font-bold text-center mb-8">Contact Us</h1>
-             <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="bg-white p-8 shadow-lg rounded-lg">
                     <h2 class="text-2xl font-bold mb-4">Send Us a Message</h2>
                     <form id="contact-form">
                         <div class="mb-4">
                             <label for="contact-name" class="block text-sm font-medium text-gray-700">Name</label>
-                            <input type="text" id="contact-name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" required>
+                            <input type="text" id="contact-name"
+                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+                                required>
                         </div>
                         <div class="mb-4">
                             <label for="contact-email" class="block text-sm font-medium text-gray-700">Email</label>
-                            <input type="email" id="contact-email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" required>
+                            <input type="email" id="contact-email"
+                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+                                required>
                         </div>
                         <div class="mb-4">
                             <label for="contact-message" class="block text-sm font-medium text-gray-700">Message</label>
-                            <textarea id="contact-message" rows="4" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" required></textarea>
+                            <textarea id="contact-message" rows="4"
+                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+                                required></textarea>
                         </div>
-                        <button type="submit" class="w-full bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700">Send Message</button>
+                        <button type="submit"
+                            class="w-full bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700">Send
+                            Message</button>
                     </form>
                 </div>
                 <div class="bg-white p-8 shadow-lg rounded-lg">
@@ -184,10 +234,11 @@
                     <address class="not-italic space-y-4 text-lg">
                         <p><strong>Phone:</strong> +91-9770016640</p>
                         <p><strong>Email:</strong> info@brickworkspro.com</p>
-                        <p><strong>Address:</strong> Village - Khairi, District - Balaghat, Madhya Pradesh, India (Pincode: 481337)</p>
+                        <p><strong>Address:</strong> Village - Khairi, District - Balaghat, Madhya Pradesh, India
+                            (Pincode: 481337)</p>
                     </address>
                 </div>
-             </div>
+            </div>
         </section>
 
         <!-- Get a Quote Page Section (Hidden) -->
@@ -202,36 +253,49 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                         <div>
                             <label for="quote-name" class="block text-sm font-medium text-gray-700">Full Name</label>
-                            <input type="text" id="quote-name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" required>
+                            <input type="text" id="quote-name"
+                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+                                required>
                         </div>
                         <div>
-                            <label for="quote-phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
-                            <input type="tel" id="quote-phone" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" required>
+                            <label for="quote-phone" class="block text-sm font-medium text-gray-700">Phone
+                                Number</label>
+                            <input type="tel" id="quote-phone"
+                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+                                required>
                         </div>
                     </div>
                     <div class="mb-6">
                         <label for="quote-email" class="block text-sm font-medium text-gray-700">Email Address</label>
-                        <input type="email" id="quote-email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" required>
+                        <input type="email" id="quote-email"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" required>
                     </div>
-                     <!-- NEW FIELD FOR DELIVERY LOCATION -->
+                    <!-- NEW FIELD FOR DELIVERY LOCATION -->
                     <div class="mb-6">
-                        <label for="quote-location" class="block text-sm font-medium text-gray-700">Delivery Location / Pincode</label>
-                        <input type="text" id="quote-location" placeholder="e.g., Khairi, 481337" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" required>
+                        <label for="quote-location" class="block text-sm font-medium text-gray-700">Delivery Location /
+                            Pincode</label>
+                        <input type="text" id="quote-location" placeholder="e.g., Khairi, 481337"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" required>
                     </div>
                     <!-- END OF NEW FIELD -->
                     <hr class="my-6">
                     <!-- These are the fields that WILL be sent to the backend -->
                     <div class="mb-6">
                         <label for="quote-product" class="block text-sm font-medium text-gray-700">Brick Type</label>
-                        <select id="quote-product" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" required>
+                        <select id="quote-product"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" required>
                             <option value="">-- Select a Brick --</option>
                         </select>
                     </div>
                     <div class="mb-6">
                         <label for="quote-quantity" class="block text-sm font-medium text-gray-700">Quantity</label>
-                        <input type="number" id="quote-quantity" placeholder="e.g., 5000" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" min="1" required>
+                        <input type="number" id="quote-quantity" placeholder="e.g., 5000"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" min="1"
+                            required>
                     </div>
-                    <button type="submit" class="w-full bg-red-600 text-white px-8 py-3 rounded-lg text-lg font-medium hover:bg-red-700 transition duration-300">Submit Quote Request</button>
+                    <button type="submit"
+                        class="w-full bg-red-600 text-white px-8 py-3 rounded-lg text-lg font-medium hover:bg-red-700 transition duration-300">Submit
+                        Quote Request</button>
                 </form>
             </div>
         </section>
@@ -243,13 +307,16 @@
                 <form id="login-form">
                     <div class="mb-6">
                         <label for="login-username" class="block text-sm font-medium text-gray-700">Username</label>
-                        <input type="text" id="login-username" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" required>
+                        <input type="text" id="login-username"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" required>
                     </div>
                     <div class="mb-6">
                         <label for="login-password" class="block text-sm font-medium text-gray-700">Password</label>
-                        <input type="password" id="login-password" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" required>
+                        <input type="password" id="login-password"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" required>
                     </div>
-                    <button type="submit" id="login-submit-button" class="w-full bg-red-600 text-white px-8 py-3 rounded-lg text-lg font-medium hover:bg-red-700 transition duration-300">Login</button>
+                    <button type="submit" id="login-submit-button"
+                        class="w-full bg-red-600 text-white px-8 py-3 rounded-lg text-lg font-medium hover:bg-red-700 transition duration-300">Login</button>
                 </form>
             </div><br>
             <h5 class="text-1xl md:text-2xl font-bold text-center mb-4">Admin Dashboard Coming Soon In Next Phase</h5>
@@ -262,17 +329,20 @@
         -->
         <section id="admin-dashboard-page" class="page-section" hidden>
             <h1 class="text-3xl md:text-4xl font-bold text-center mb-8">Admin Dashboard</h1>
-            
+
             <!-- Dashboard Navigation Tabs -->
             <div class="mb-6 border-b border-gray-300">
                 <nav class="flex space-x-4" aria-label="Tabs">
-                    <a href="#" id="admin-tab-products" class="admin-tab-link bg-white text-blue-600 px-4 py-3 rounded-t-lg font-medium border-b-2 border-blue-600">
+                    <a href="#" id="admin-tab-products"
+                        class="admin-tab-link bg-white text-blue-600 px-4 py-3 rounded-t-lg font-medium border-b-2 border-blue-600">
                         Product Management
                     </a>
-                    <a href="#" id="admin-tab-quotes" class="admin-tab-link text-gray-500 hover:text-gray-700 px-4 py-3 font-medium">
+                    <a href="#" id="admin-tab-quotes"
+                        class="admin-tab-link text-gray-500 hover:text-gray-700 px-4 py-3 font-medium">
                         Quote Management
                     </a>
-                    <a href="#" id="admin-tab-messages" class="admin-tab-link text-gray-500 hover:text-gray-700 px-4 py-3 font-medium">
+                    <a href="#" id="admin-tab-messages"
+                        class="admin-tab-link text-gray-500 hover:text-gray-700 px-4 py-3 font-medium">
                         Contact Messages
                     </a>
                 </nav>
@@ -283,7 +353,7 @@
                 <!-- Product Management Panel (Visible by default) -->
                 <div id="admin-panel-products" class="admin-panel">
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                        
+
                         <!-- Left Panel: Product List -->
                         <div class="lg:col-span-2 bg-white p-8 shadow-lg rounded-lg">
                             <h2 class="text-2xl font-bold mb-6">Existing Products</h2>
@@ -291,16 +361,23 @@
                                 <table class="min-w-full divide-y divide-gray-200">
                                     <thead class="bg-gray-50">
                                         <tr>
-                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
-                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
-                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Price</th>
-                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Stock</th>
-                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                                                Name</th>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                                                Type</th>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                                                Price</th>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                                                Stock</th>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                                                Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody id="admin-product-table-body" class="bg-white divide-y divide-gray-200">
                                         <!-- Admin product rows will be injected here -->
-                                        <tr><td colspan="5" class="p-4 text-center">Loading products...</td></tr>
+                                        <tr>
+                                            <td colspan="5" class="p-4 text-center">Loading products...</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -312,29 +389,41 @@
                             <form id="admin-add-form" class="space-y-4">
                                 <div>
                                     <label for="add-name" class="block text-sm font-medium text-gray-700">Name</label>
-                                    <input type="text" id="add-name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" required>
+                                    <input type="text" id="add-name"
+                                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" required>
                                 </div>
                                 <div>
-                                    <label for="add-type" class="block text-sm font-medium text-gray-700">Brick Type</label>
-                                    <input type="text" id="add-type" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
+                                    <label for="add-type" class="block text-sm font-medium text-gray-700">Brick
+                                        Type</label>
+                                    <input type="text" id="add-type"
+                                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
                                 </div>
                                 <div>
                                     <label for="add-color" class="block text-sm font-medium text-gray-700">Color</label>
-                                    <input type="text" id="add-color" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
+                                    <input type="text" id="add-color"
+                                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
                                 </div>
                                 <div>
-                                    <label for="add-price" class="block text-sm font-medium text-gray-700">Unit Price (₹)</label>
-                                    <input type="number" id="add-price" step="0.01" min="0" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" required>
+                                    <label for="add-price" class="block text-sm font-medium text-gray-700">Unit Price
+                                        (₹)</label>
+                                    <input type="number" id="add-price" step="0.01" min="0"
+                                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" required>
                                 </div>
                                 <div>
-                                    <label for="add-stock" class="block text-sm font-medium text-gray-700">Stock Quantity</label>
-                                    <input type="number" id="add-stock" min="0" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
+                                    <label for="add-stock" class="block text-sm font-medium text-gray-700">Stock
+                                        Quantity</label>
+                                    <input type="number" id="add-stock" min="0"
+                                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
                                 </div>
                                 <div>
-                                    <label for="add-image-url" class="block text-sm font-medium text-gray-700">Image URL</label>
-                                    <input type="text" id="add-image-url" placeholder="./images/red-brick.jpg" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
+                                    <label for="add-image-file" class="block text-sm font-medium text-gray-700">Product
+                                        Image</label>
+                                    <input type="file" id="add-image-file" accept="image/*"
+                                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
+                                    <img id="add-image-preview" class="mt-2 h-32 object-contain hidden" alt="Preview">
                                 </div>
-                                <button type="submit" id="add-product-button" class="w-full bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700">
+                                <button type="submit" id="add-product-button"
+                                    class="w-full bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700">
                                     Add Product
                                 </button>
                             </form>
@@ -346,7 +435,8 @@
                 <div id="admin-panel-quotes" class="admin-panel" hidden>
                     <div class="bg-white p-8 shadow-lg rounded-lg text-center">
                         <h2 class="text-2xl font-bold mb-4">Quote Management</h2>
-                        <p class="text-lg text-gray-600">This section is coming in the next phase. You will be able to view and manage all "New Request" quotes here.</p>
+                        <p class="text-lg text-gray-600">This section is coming in the next phase. You will be able to
+                            view and manage all "New Request" quotes here.</p>
                     </div>
                 </div>
 
@@ -354,7 +444,8 @@
                 <div id="admin-panel-messages" class="admin-panel" hidden>
                     <div class="bg-white p-8 shadow-lg rounded-lg text-center">
                         <h2 class="text-2xl font-bold mb-4">Contact Messages</h2>
-                        <p class="text-lg text-gray-600">This section is coming in the next phase. You will be able to read all contact form submissions here.</p>
+                        <p class="text-lg text-gray-600">This section is coming in the next phase. You will be able to
+                            read all contact form submissions here.</p>
                     </div>
                 </div>
 
@@ -367,7 +458,8 @@
         NEW: ADMIN EDIT PRODUCT MODAL
         ==================================================================
         -->
-        <div id="edit-modal" class="modal fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center p-4 z-50 opacity-0 pointer-events-none">
+        <div id="edit-modal"
+            class="modal fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center p-4 z-50 opacity-0 pointer-events-none">
             <div class="modal-content bg-white w-full max-w-lg p-8 rounded-lg shadow-2xl transform scale-95">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-2xl font-bold">Edit Product</h2>
@@ -377,42 +469,60 @@
                     <input type="hidden" id="edit-id">
                     <div>
                         <label for="edit-name" class="block text-sm font-medium text-gray-700">Name</label>
-                        <input type="text" id="edit-name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" required>
+                        <input type="text" id="edit-name"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" required>
                     </div>
                     <div>
                         <label for="edit-type" class="block text-sm font-medium text-gray-700">Brick Type</label>
-                        <input type="text" id="edit-type" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
+                        <input type="text" id="edit-type"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
                     </div>
                     <div>
                         <label for="edit-color" class="block text-sm font-medium text-gray-700">Color</label>
-                        <input type="text" id="edit-color" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
+                        <input type="text" id="edit-color"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
                     </div>
                     <div>
                         <label for="edit-price" class="block text-sm font-medium text-gray-700">Unit Price (₹)</label>
-                        <input type="number" id="edit-price" step="0.01" min="0" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" required>
+                        <input type="number" id="edit-price" step="0.01" min="0"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" required>
                     </div>
                     <div>
                         <label for="edit-stock" class="block text-sm font-medium text-gray-700">Stock Quantity</label>
-                        <input type="number" id="edit-stock" min="0" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
+                        <input type="number" id="edit-stock" min="0"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
                     </div>
                     <div>
-                        <label for="edit-image-url" class="block text-sm font-medium text-gray-700">Image URL</label>
-                        <input type="text" id="edit-image-url" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
+                        <label for="edit-image-file" class="block text-sm font-medium text-gray-700">Image (Leave empty
+                            to keep current)</label>
+                        <input type="file" id="edit-image-file" accept="image/*"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
+                        <!-- REMOVED hidden input for base64 string -->
+                        <div id="edit-current-image-container" class="mt-2">
+                            <p class="text-sm text-gray-500 mb-1">Current Image:</p>
+                            <img id="edit-image-preview" class="h-32 object-contain" alt="Preview">
+                        </div>
                     </div>
                     <div class="flex justify-end space-x-4">
-                        <button type="button" id="edit-modal-cancel" class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-medium hover:bg-gray-300">
+                        <button type="button" id="edit-modal-cancel"
+                            class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-medium hover:bg-gray-300">
                             Cancel
                         </button>
-                        <button type="submit" id="edit-product-button" class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700">
+                        <button type="submit" id="edit-product-button"
+                            class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700">
                             Save Changes
                         </button>
                     </div>
                 </form>
             </div>
         </div>
+        <!-- END OF ADMIN DASHBOARD SECTION -->
+        <!-- ================================================================ -->
+
 
         <!-- Message/Status Box -->
-        <div id="status-message" class="hidden fixed top-24 right-6 bg-green-500 text-white p-4 rounded-lg shadow-lg z-50 transition-opacity duration-300">
+        <div id="status-message"
+            class="hidden fixed top-24 right-6 bg-green-500 text-white p-4 rounded-lg shadow-lg z-50 transition-opacity duration-300">
             <!-- Message will be set here -->
         </div>
 
@@ -428,10 +538,10 @@
     <!-- JavaScript Logic -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            
+
             // --- Configuration ---
             const API_URL = "http://localhost:9191";
-            
+
             // --- Page Elements ---
             const pageSections = document.querySelectorAll('.page-section');
             const navLinks = document.querySelectorAll('.nav-link');
@@ -441,6 +551,7 @@
 
             // --- Public Page Elements ---
             const productGrid = document.getElementById('product-grid');
+            const productGallery = document.getElementById('product-gallery');
             const quoteProductSelect = document.getElementById('quote-product');
 
             // --- NEW: Auth State Elements ---
@@ -468,7 +579,7 @@
             // ==================================================================
             // UTILITY FUNCTIONS
             // ==================================================================
-            
+
             // --- Show/Hide Page Sections ---
             function showPage(pageId) {
                 pageSections.forEach(section => { section.hidden = true; });
@@ -476,7 +587,7 @@
                 if (activePage) { activePage.hidden = false; }
                 mobileMenu.classList.add('hidden');
             }
-            
+
 
             /// --- Show Status Message ---
             function showStatus(message, isError = false) {
@@ -485,7 +596,7 @@
                 statusMessage.classList.add(isError ? 'bg-red-500' : 'bg-green-500');
                 statusMessage.classList.remove('hidden');
                 statusMessage.classList.add('opacity-100');
-                
+
                 setTimeout(() => {
                     statusMessage.classList.remove('opacity-100');
                     statusMessage.classList.add('hidden');
@@ -493,6 +604,12 @@
             }
 
             // --- Get Auth Token ---
+            // --- FIX: ADDED getAuthToken FUNCTION ---
+            function getAuthToken() {
+                return localStorage.getItem('adminToken');
+            }
+
+            // --- Get Auth Header ---
             function getAuthHeader() {
                 const token = localStorage.getItem('adminToken');
                 return token ? { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' } : { 'Content-Type': 'application/json' };
@@ -522,7 +639,7 @@
                 });
             });
 
-             mobileMenuButton.addEventListener('click', () => {
+            mobileMenuButton.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
             });
 
@@ -584,11 +701,11 @@
                     });
                     if (!response.ok) { throw new Error('Incorrect username or password'); }
                     const data = await response.json();
-                    
+
                     localStorage.setItem('adminToken', data.jwt); // Store the token
                     showStatus("Admin login successful!");
                     document.getElementById('login-form').reset();
-                    
+
                     showLoggedInUI(); // Update nav
                     showPage('admin-dashboard'); // Show dashboard
                     fetchAdminProducts(); // Load product data for the dashboard
@@ -606,20 +723,30 @@
             // ==================================================================
             // PUBLIC-FACING PAGES
             // ==================================================================
-// --- Product Image Helper ---
-            function getProductImage(productName) {
-                const name = productName.toLowerCase();
-                if (name.includes("red")) {
-                    return "./images/red-brick.jpg";
-                } else if (name.includes("cement brick")) {
-                    return "./images/cement-brick.jpg";
-                } else if (name.includes("gattu") || name.includes("paver")) {
-                    return "./images/gattu.jpg";
-                }else if (name.includes("multicolor")) {
-                    return "./images/multicolor.jpeg";
+            // --- Product Image Helper ---
+            function getProductImage(product) {
+                // 1. Check for Binary Image Data (New System)
+                if (product.imageData) {
+                    // Ensure product.imageType exists, default to png if missing
+                    const mimeType = product.imageType || 'image/jpeg'; 
+                    return `data:${mimeType};base64,${product.imageData}`;
                 }
-                // Fallback placeholder
-                return `https://placehold.co/600x400/993333/FFFFFF?text=${encodeURIComponent(productName)}`;
+                
+                // 2. Check for Legacy Image URL (Old System / Database URL)
+                // Ensure we don't double-prefix if the URL is already a data URI
+                if (product.imageUrl && !product.imageUrl.startsWith('data:')) {
+                    return product.imageUrl;
+                }
+
+                // 3. Fallback: Match by Name (For existing products without data or URL)
+                const name = product.name ? product.name.toLowerCase() : "";
+                if (name.includes("red brick")) return "./images/red-brick.jpg";
+                if (name.includes("cement brick")) return "./images/cement-brick.jpg";
+                if (name.includes("gattu") || name.includes("paver")) return "./images/gattu.jpg";
+                if (name.includes("multicolor")) return "./images/multicolor.jpeg";
+
+                // 4. Ultimate Fallback: Placeholder
+                return `https://placehold.co/600x400/993333/FFFFFF?text=${encodeURIComponent(product.name || "Product")}`;
             }
 
             // --- Public Product Loading ---
@@ -641,17 +768,17 @@
             function renderProducts(products) {
                 productGrid.innerHTML = '';
                 if (products.length === 0) {
-                     productGrid.innerHTML = `<p class="col-span-full text-center">No products available at this time.</p>`;
-                     return;
+                    productGrid.innerHTML = `<p class="col-span-full text-center">No products available at this time.</p>`;
+                    return;
                 }
 
                 products.forEach(product => {
                     const productCard = document.createElement('div');
                     productCard.className = 'bg-white shadow-lg rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105';
-                    
+
                     // Use new helper function for image
                     const imageUrl = getProductImage(product.name);
-                    
+
                     productCard.innerHTML = `
                         <div class="bg-gray-200">
                             <img src="${imageUrl}" alt="${product.name}" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/600x400/cccccc/FFFFFF?text=Image+Not+Found'">
@@ -676,22 +803,22 @@
 
             function populateQuoteSelect(products) {
                 quoteProductSelect.innerHTML = '<option value="">-- Select a Brick --</option>';
-                 products.forEach(product => {
+                products.forEach(product => {
                     const option = document.createElement('option');
                     // Use product.productId
-                    option.value = product.productId; 
+                    option.value = product.productId;
                     option.textContent = `${product.name} (₹${product.unitPrice.toFixed(2)})`;
                     quoteProductSelect.appendChild(option);
-                 });
+                });
             }
 
             // --- Form Submissions ---
 
-            
+
             // --- "Get a Quote" Form (UPDATED with validation) ---
             document.getElementById('quote-form').addEventListener('submit', async (e) => {
                 e.preventDefault();
-                
+
                 const selectedProductId = document.getElementById('quote-product').value;
                 const quantity = document.getElementById('quote-quantity').value;
                 const deliveryLocation = document.getElementById('quote-location').value;
@@ -701,7 +828,7 @@
                     showStatus("Please select a brick type.", true);
                     return; // Stop the function here
                 }
-  
+
                 const quoteRequest = {
                     customerId: 0, // Placeholder 0 for a public "guest" quote
                     deliveryLocation: deliveryLocation,
@@ -712,7 +839,7 @@
                         }
                     ]
                 };
-                
+
                 try {
                     // Call the NEW public endpoint
                     const response = await fetch(`${API_URL}/api/orders/public-quote`, {
@@ -720,7 +847,7 @@
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(quoteRequest)
                     });
-                    
+
                     if (!response.ok) {
                         // --- THIS IS THE NEW ERROR HANDLING ---
                         let errorMsg = 'Quote submission failed. Please try again.';
@@ -735,19 +862,19 @@
                         }
                         throw new Error(errorMsg); // Throw the detailed error
                     }
-                    
+
                     showStatus("Quote request sent successfully! We will contact you soon.");
                     document.getElementById('quote-form').reset();
-                    
+
                     // Go back home after 5 seconds, as requested
                     setTimeout(() => {
                         showPage('home'); // Go back home
-                    }, 5000); 
+                    }, 5000);
 
                 } catch (error) {
                     console.error('Quote submission failed:', error);
                     // This will now show the *detailed* error message (e.g., "Forbidden")
-                    showStatus(error.message, true); 
+                    showStatus(error.message, true);
                 }
             });
 
@@ -757,7 +884,7 @@
             contactForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const contactSubmitButton = contactForm.querySelector('button[type="submit"]');
-                
+
                 contactSubmitButton.disabled = true;
                 contactSubmitButton.textContent = "Sending...";
 
@@ -810,12 +937,12 @@
             // ==================================================================
             // ADMIN DASHBOARD
             // ==================================================================
-
+            fetchAdminProducts();
             // --- Admin Tab Navigation ---
             adminTabs.forEach(tab => {
                 tab.addEventListener('click', (e) => {
                     e.preventDefault();
-                    
+
                     // Style tabs
                     adminTabs.forEach(t => {
                         t.classList.remove('bg-white', 'text-blue-600', 'border-b-2', 'border-blue-600');
@@ -874,9 +1001,11 @@
                         </td>
                     `;
                     // Add listeners for the new buttons
-                    row.querySelector('.admin-edit-btn').addEventListener('click', () => openEditModal(product.productId));
-                    row.querySelector('.admin-delete-btn').addEventListener('click', () => deleteProduct(product.productId));
-                    
+                    // We ensure the ID is parsed correctly
+                    const pId = product.productId;
+                    row.querySelector('.admin-edit-btn').addEventListener('click', () => openEditModal(pId));
+                    row.querySelector('.admin-delete-btn').addEventListener('click', () => deleteProduct(pId));
+
                     adminProductTableBody.appendChild(row);
                 });
             }
@@ -893,31 +1022,76 @@
                     brickType: document.getElementById('add-type').value,
                     color: document.getElementById('add-color').value,
                     unitPrice: parseFloat(document.getElementById('add-price').value),
-                    stockQuantity: parseInt(document.getElementById('add-stock').value),
-                    imageUrl: document.getElementById('add-image-url').value
+                    stockQuantity: parseInt(document.getElementById('add-stock').value)
                 };
 
+                // Create FormData for Multipart Upload
+                const formData = new FormData();
+
+                // 1. Add Product JSON as a specific Blob with content-type application/json
+                const productBlob = new Blob([JSON.stringify(product)], { type: 'application/json' });
+                formData.append('product', productBlob);
+
+                // 2. Add Image File (if selected)
+                const fileInput = document.getElementById('add-image-file');
+                if (fileInput.files.length > 0) {
+                    formData.append('imageFile', fileInput.files[0]);
+                }
+                console.log("Submitting Add Product FormData:", formData);
                 try {
+                    const token = getAuthToken();
                     const response = await fetch(`${API_URL}/api/products`, {
                         method: 'POST',
-                        headers: getAuthHeader(),
-                        body: JSON.stringify(product)
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                            // Note: Content-Type is NOT set manually. fetch sets it to multipart/form-data with boundary automatically.
+                        },
+                        body: formData
                     });
-
+                    console.log("Add Product Response Status:", response.status);
                     if (handleAuthError(response)) return;
+                    console.log("Add Product Response OK:", response.ok);
                     if (!response.ok) throw new Error("Failed to create product");
-
-                    showStatus("Product created successfully!");
+                    console.log("Add Product Response Received");
+                    showStatus("Product Added Successfully!");
                     adminAddForm.reset();
+                    console.log("Add Product Form Reset");
+
+                    // Reset image preview
+                    const addImagePreview = document.getElementById('add-image-preview');
+                    addImagePreview.classList.add('hidden');
+                    addImagePreview.src = "";
+
                     fetchAdminProducts(); // Refresh the table
                     fetchProducts(); // Refresh the public products page
-                
+
                 } catch (error) {
                     console.error("Add product failed:", error);
                     showStatus(error.message, true);
                 } finally {
                     button.disabled = false;
                     button.textContent = "Add Product";
+                }
+            });
+
+            // Image Previews
+            addImageFile.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        addImagePreview.src = e.target.result;
+                        addImagePreview.classList.remove('hidden');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+            editImageFile.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => editImagePreview.src = e.target.result;
+                    reader.readAsDataURL(file);
                 }
             });
 
@@ -945,23 +1119,24 @@
                     showStatus(error.message, true);
                 }
             }
-            
+
             // --- Admin "Edit Product" Modal ---
-            function openEditModal(id) {
+            // Edit Modal Logic
+             function openEditModal(id) {
                 currentEditProductId = id;
                 const product = allProducts.find(p => p.productId === id);
                 if (!product) return;
                 
-                // Populate the edit form
                 document.getElementById('edit-id').value = product.productId;
                 document.getElementById('edit-name').value = product.name;
                 document.getElementById('edit-type').value = product.brickType;
                 document.getElementById('edit-color').value = product.color;
                 document.getElementById('edit-price').value = product.unitPrice;
                 document.getElementById('edit-stock').value = product.stockQuantity;
-                document.getElementById('edit-image-url').value = product.imageUrl || '';
-
-                // Show the modal
+                
+                document.getElementById('edit-image-file').value = "";
+                document.getElementById('edit-image-preview').src = getProductImage(product);
+                
                 adminEditModal.classList.remove('opacity-0', 'pointer-events-none');
                 adminEditModal.querySelector('.modal-content').classList.remove('scale-95');
             }
@@ -973,15 +1148,16 @@
                 adminEditForm.reset();
             }
 
+
             editModalClose.addEventListener('click', closeEditModal);
             editModalCancel.addEventListener('click', closeEditModal);
 
-            // --- Admin "Edit Product" Form Submission ---
+            // Edit Form Submit
             adminEditForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
-                const button = document.getElementById('edit-product-button');
-                button.disabled = true;
-                button.textContent = "Saving...";
+                const btn = document.getElementById('edit-product-button');
+                btn.disabled = true;
+                btn.textContent = "Saving...";
 
                 const product = {
                     productId: currentEditProductId,
@@ -989,41 +1165,112 @@
                     brickType: document.getElementById('edit-type').value,
                     color: document.getElementById('edit-color').value,
                     unitPrice: parseFloat(document.getElementById('edit-price').value),
-                    stockQuantity: parseInt(document.getElementById('edit-stock').value),
-                    imageUrl: document.getElementById('edit-image-url').value
+                    stockQuantity: parseInt(document.getElementById('edit-stock').value)
                 };
 
+                const formData = new FormData();
+                formData.append('product', new Blob([JSON.stringify(product)], { type: 'application/json' }));
+                const fileInput = document.getElementById('edit-image-file');
+                if (fileInput.files.length > 0) formData.append('imageFile', fileInput.files[0]);
+
                 try {
-                    console.log("Current product ID for update:", currentEditProductId);
                     const response = await fetch(`${API_URL}/api/products/${currentEditProductId}`, {
+
                         method: 'PUT',
-                        headers: getAuthHeader(),
-                        body: JSON.stringify(product)
+                        headers: { 'Authorization': `Bearer ${getAuthToken()}` },
+                        body: formData
+                    });
+                    if (handleAuthError(response)) return;
+                    if (!response.ok) throw new Error("Update failed");
+
+                    showStatus("Product updated!");
+                    closeEditModal();
+                    fetchAdminProducts();
+                    fetchProducts();
+                } catch (error) {
+                    console.error(error);
+                    showStatus("Update failed.", true);
+                } finally {
+                    btn.disabled = false;
+                    btn.textContent = "Save Changes";
+                }
+            });
+
+            // --- Function to Load Gallery Images from DB ---
+            async function loadGallery() {
+                const galleryGrid = document.getElementById('gallery-product-grid');
+
+                // Safety check: ensure the element exists before trying to modify it
+                if (!galleryGrid) return;
+
+                try {
+                    // 1. Fetch data from your backend
+                    const response = await fetch('http://localhost:9191/api/products');
+
+                    if (!response.ok) throw new Error("Failed to fetch products");
+
+                    const products = await response.json();
+
+                    // 2. Handle empty database
+                    if (products.length === 0) {
+                        galleryGrid.innerHTML = '<p class="col-span-full text-center text-gray-500">No products found in database.</p>';
+                        return;
+                    }
+
+                    // 3. Clear the "Loading..." text
+                    galleryGrid.innerHTML = '';
+
+                    // 4. Loop through products and create HTML
+                    products.forEach(product => {
+                        // Logic to determine image source: DB URL -> Local Helper -> Placeholder
+                        let imgSrc = product.imageUrl;
+
+                        // If DB url is empty, try to match local images based on name (Optional helper)
+                        if (!imgSrc) {
+                            const lowerName = product.name.toLowerCase();
+                            if (lowerName.includes("red")) imgSrc = "./images/red-brick.jpg";
+                            else if (lowerName.includes("cement")) imgSrc = "./images/cement-brick.jpg";
+                            else if (lowerName.includes("gattu") || lowerName.includes("paver")) imgSrc = "./images/gattu.jpg";
+                            else imgSrc = `https://placehold.co/600x400/cccccc/FFFFFF?text=${encodeURIComponent(product.name)}`;
+                        }
+
+                        // Create the card HTML
+                        const cardHTML = `
+                <div class="rounded-lg shadow-md overflow-hidden shrink-0 group relative">
+                    <img src="${imgSrc}" 
+                         alt="${product.name}" 
+                         class="w-full h-64 object-contain transition-transform duration-300 group-hover:scale-105"
+                         onerror="this.src='https://placehold.co/600x400/cccccc/FFFFFF?text=Image+Not+Found'">
+                    
+                    <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-center py-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                        ${product.name}
+                    </div>
+                </div>
+            `;
+
+                        // Append to grid
+                        galleryGrid.innerHTML += cardHTML;
                     });
 
-                    if (handleAuthError(response)) return;
-                    if (!response.ok) throw new Error("Failed to update product");
-
-                    showStatus("Product updated successfully!");
-                    closeEditModal();
-                    fetchAdminProducts(); // Refresh the admin table
-                    fetchProducts(); // Refresh the public products page
-
                 } catch (error) {
-                    console.error("Update product failed:", error);
-                    showStatus(error.message, true);
-                } finally {
-                    button.disabled = false;
-                    button.textContent = "Save Changes";
+                    console.error("Gallery Load Error:", error);
+                    galleryGrid.innerHTML = '<p class="col-span-full text-center text-red-500">Error loading gallery images.</p>';
                 }
+            }
+
+            // --- Trigger the load ---
+            document.addEventListener('DOMContentLoaded', () => {
+                loadGallery();
+                // ... your other init code ...
             });
 
             // --- Initial Load ---
             fetchProducts();
             checkLoginState();
+            loadGallery();
 
         });
     </script>
-
 </body>
+
 </html>
