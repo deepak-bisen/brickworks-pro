@@ -111,7 +111,7 @@
                 <div class="h-48 md:h-64 lg:h-80 bg-cover bg-center"
                     style="background-image: url('https://placehold.co/1200x400/993333/FFFFFF?text=Modern+Brick+Building')">
                 </div>
-                <div class="p-8 text-center">
+                <div class="p-4 text-center">
                     <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">High-Quality Bricks for Your Next
                         Project</h1>
                     <p class="text-lg text-gray-700 mb-8">Durable, reliable bricks made from the finest local soil &
@@ -120,13 +120,39 @@
                         class="nav-link bg-red-600 text-white px-8 py-3 rounded-lg text-lg font-medium hover:bg-red-700 transition duration-300"
                         data-page="products">View Our Products</a>
                 </div>
+                <!-- Features Section -->
+                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 p-0 bg-gray-50">
+                <div class="text-center p-4 ">
+                    <div
+                        class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-red-600 text-2xl">
+                        🏗️</div>
+                    <h3 class="text-xl font-bold mb-2">Premium Quality</h3>
+                    <p class="text-gray-600">Manufactured with high-grade raw materials for maximum durability.</p>
+                </div>
+                <div class="text-center p-4">
+                    <div
+                        class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-red-600 text-2xl">
+                        🚚</div>
+                    <h3 class="text-xl font-bold mb-2">Fast Delivery</h3>
+                    <p class="text-gray-600">Reliable logistics ensuring your materials arrive on time, every time.
+                    </p>
+                </div>
+                <div class="text-center p-4">
+                    <div
+                        class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-red-600 text-2xl">
+                        💰</div>
+                    <h3 class="text-xl font-bold mb-2">Best Prices</h3>
+                    <p class="text-gray-600">Competitive market rates without compromising on strength or finish.
+                    </p>
+                </div>
+                </div>
             </div>
         </section>
 
         <!-- Products Page Section (Hidden) -->
         <section id="products-page" class="page-section" hidden>
             <h1 class="text-3xl md:text-4xl font-bold text-center mb-8">Our Products</h1>
-            <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div id="product-grid" class="grid grid-cols-1  lg:grid-cols-4 gap-8">
                 <!-- Products will be loaded here by JavaScript -->
                 <div class="text-center p-8 col-span-full">Loading products...</div>
             </div>
@@ -134,24 +160,68 @@
 
         <!-- Our Process Page Section (Hidden) -->
         <section id="process-page" class="page-section" hidden>
-            <h1 class="text-3xl md:text-4xl font-bold text-center mb-8">Our Process</h1>
-            <div class="bg-white p-8 shadow-lg rounded-lg max-w-4xl mx-auto">
-                <p class="text-lg mb-4">Our commitment to quality begins with our process. We combine traditional
-                    techniques with modern standards to ensure every brick is perfect.</p>
-                <ol class="list-decimal list-inside space-y-4 text-lg">
-                    <li><span class="font-semibold">Sourcing Materials:</span> We select the finest quality soil and
-                        sand from trusted local sources.</li>
-                    <li><span class="font-semibold">Mixing & Blending:</span> Our precise mixture ratios guarantee
-                        consistent strength and texture.</li>
-                    <li><span class="font-semibold">Molding & Pressing:</span> State-of-the-art machinery molds and
-                        compresses the mixture into uniform shapes.</li>
-                    <li><span class="font-semibold">Drying Process:</span> Bricks are carefully air-dried in controlled
-                        environments to prevent cracks.</li>
-                    <li><span class="font-semibold">Kiln Firing:</span> The final step involves firing in our
-                        high-temperature kiln, hardening the bricks to last a lifetime.</li>
-                </ol>
-                <span class="text-blue-500 text-lg font-semibold">Note: Processing Images and videos will be available
-                    soon.</span>
+            <h1 class="text-3xl md:text-4xl font-bold text-center mb-6 text-gray-800">Our Process</h1>
+            <div class="bg-white p-6 shadow-lg rounded-lg max-w-4xl mx-auto border-t-4 border-red-600">
+                <p class="text-lg mb-6 text-gray-600 text-center">Our commitment to quality begins with our process. We
+                    combine traditional techniques with modern standards to ensure every brick is perfect.</p>
+
+                <div class="space-y-8">
+                    <div class="flex flex-col md:flex-row gap-4 items-center">
+                        <div
+                            class="w-12 h-12 flex-shrink-0 bg-red-600 text-white rounded-full flex items-center justify-center font-bold text-xl">
+                            1</div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Sourcing Materials</h3>
+                            <p class="text-gray-600">We select the finest quality soil and sand from trusted local
+                                sources, ensuring the base material is pure and free from contaminants.</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:flex-row gap-4 items-center">
+                        <div
+                            class="w-12 h-12 flex-shrink-0 bg-red-600 text-white rounded-full flex items-center justify-center font-bold text-xl">
+                            2</div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Mixing & Blending</h3>
+                            <p class="text-gray-600">Our precise mixture ratios guarantee consistent strength and
+                                texture. Water and clay are blended to the perfect consistency.</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:flex-row gap-4 items-center">
+                        <div
+                            class="w-12 h-12 flex-shrink-0 bg-red-600 text-white rounded-full flex items-center justify-center font-bold text-xl">
+                            3</div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Molding & Pressing</h3>
+                            <p class="text-gray-600">State-of-the-art machinery molds and compresses the mixture into
+                                uniform shapes with sharp edges.</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:flex-row gap-4 items-center">
+                        <div
+                            class="w-12 h-12 flex-shrink-0 bg-red-600 text-white rounded-full flex items-center justify-center font-bold text-xl">
+                            4</div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Drying Process</h3>
+                            <p class="text-gray-600">Bricks are carefully air-dried in controlled
+                                environments to prevent cracks.</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:flex-row gap-4 items-center">
+                        <div
+                            class="w-12 h-12 flex-shrink-0 bg-red-600 text-white rounded-full flex items-center justify-center font-bold text-xl">
+                            5</div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Firing Process</h3>
+                            <p class="text-gray-600">Bricks are then fired in our high-temperature kiln, hardening them
+                                to last a lifetime.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 p-2 bg-blue-50 rounded-lg text-center">
+                    <span class="text-blue-600 font-semibold">Note: Processing Images and videos will be available
+                        soon.</span>
+                </div>
             </div>
         </section>
 
@@ -203,7 +273,7 @@
         <section id="contact-page" class="page-section" hidden>
             <h1 class="text-3xl md:text-4xl font-bold text-center mb-8">Contact Us</h1>
             <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white p-8 shadow-lg rounded-lg">
+                <div class="bg-white p-8 shadow-lg rounded-lg border-t-4 border-gray-800">
                     <h2 class="text-2xl font-bold mb-4">Send Us a Message</h2>
                     <form id="contact-form">
                         <div class="mb-4">
@@ -229,13 +299,31 @@
                             Message</button>
                     </form>
                 </div>
-                <div class="bg-white p-8 shadow-lg rounded-lg">
+                <div class="bg-white p-8 shadow-lg rounded-lg border-t-4 border-gray-800">
                     <h2 class="text-2xl font-bold mb-4">Our Information</h2>
-                    <address class="not-italic space-y-4 text-lg">
-                        <p><strong>Phone:</strong> +91-9770016640</p>
-                        <p><strong>Email:</strong> info@brickworkspro.com</p>
-                        <p><strong>Address:</strong> Village - Khairi, District - Balaghat, Madhya Pradesh, India
-                            (Pincode: 481337)</p>
+                    <address class="not-italic space-y-6 text-lg">
+                        <div class="flex items-start">
+                            <span class="text-2xl mr-3">📞</span>
+                            <div>
+                                <p class="font-bold">Phone</p>
+                                <p>+91-9770016640</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-2xl mr-3">📧</span>
+                            <div>
+                                <p class="font-bold">Email</p>
+                                <p>info@brickworkspro.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-2xl mr-3">📍</span>
+                            <div>
+                                <p class="font-bold">Address</p>
+                                <p>Village - Khairi, District - Balaghat,<br>Madhya Pradesh, India<br>(Pincode: 481337)
+                                </p>
+                            </div>
+                        </div>
                     </address>
                 </div>
             </div>
@@ -328,10 +416,10 @@
         ==================================================================
         -->
         <section id="admin-dashboard-page" class="page-section" hidden>
-            <h1 class="text-3xl md:text-4xl font-bold text-center mb-8">Admin Dashboard</h1>
+            <h1 class="text-3xl md:text-4xl font-bold text-center mb-2">Admin Dashboard</h1>
 
             <!-- Dashboard Navigation Tabs -->
-            <div class="mb-6 border-b border-gray-300">
+            <div class="mb-0 border-b border-gray-300">
                 <nav class="flex space-x-4" aria-label="Tabs">
                     <a href="#" id="admin-tab-products"
                         class="admin-tab-link bg-white text-blue-600 px-4 py-3 rounded-t-lg font-medium border-b-2 border-blue-600">
@@ -365,6 +453,8 @@
                                                 Name</th>
                                             <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                                                 Type</th>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                                                Color</th>
                                             <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                                                 Price</th>
                                             <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
@@ -440,12 +530,29 @@
                     </div>
                 </div>
 
-                <!-- Contact Messages Panel (Coming Soon) -->
+                <!-- Contact Messages Panel -->
                 <div id="admin-panel-messages" class="admin-panel" hidden>
-                    <div class="bg-white p-8 shadow-lg rounded-lg text-center">
+                    <div class="bg-white p-6 shadow-lg rounded-lg">
                         <h2 class="text-2xl font-bold mb-4">Contact Messages</h2>
-                        <p class="text-lg text-gray-600">This section is coming in the next phase. You will be able to
-                            read all contact form submissions here.</p>
+
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Received</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">From</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Message</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-messages-table-body" class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td colspan="5" class="p-4 text-center">Loading messages...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
@@ -516,10 +623,7 @@
                 </form>
             </div>
         </div>
-        <!-- END OF ADMIN DASHBOARD SECTION -->
-        <!-- ================================================================ -->
-
-
+       
         <!-- Message/Status Box -->
         <div id="status-message"
             class="hidden fixed top-24 right-6 bg-green-500 text-white p-4 rounded-lg shadow-lg z-50 transition-opacity duration-300">
@@ -528,6 +632,27 @@
 
     </main>
 
+    <!-- View Message Modal -->
+    <div id="view-message-modal" class="modal fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center p-4 z-50 opacity-0 pointer-events-none">
+        <div class="modal-content bg-white w-full max-w-2xl p-6 rounded-lg shadow-2xl transform scale-95">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <h3 id="view-message-from" class="text-xl font-bold">From Name &lt;email&gt;</h3>
+                    <p id="view-message-received" class="text-sm text-gray-500">Received date/time</p>
+                </div>
+                <div class="space-x-2">
+                    <button id="view-message-markread" class="bg-blue-600 text-white px-3 py-1 rounded-md">Mark as Read</button>
+                    <button id="view-message-delete" class="bg-red-600 text-white px-3 py-1 rounded-md">Delete</button>
+                    <button id="view-message-close" class="bg-gray-200 text-gray-800 px-3 py-1 rounded-md">Close</button>
+                </div>
+            </div>
+            <div>
+                <p id="view-message-body" class="text-gray-700 whitespace-pre-wrap"></p>
+            </div>
+        </div>
+    </div>
+
+    
     <!-- Footer -->
     <footer class="bg-gray-800 text-gray-300 mt-12 py-8">
         <div class="container mx-auto px-6 text-center">
@@ -536,741 +661,7 @@
     </footer>
 
     <!-- JavaScript Logic -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-
-            // --- Configuration ---
-            const API_URL = "http://localhost:9191";
-
-            // --- Page Elements ---
-            const pageSections = document.querySelectorAll('.page-section');
-            const navLinks = document.querySelectorAll('.nav-link');
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const statusMessage = document.getElementById('status-message');
-
-            // --- Public Page Elements ---
-            const productGrid = document.getElementById('product-grid');
-            const productGallery = document.getElementById('product-gallery');
-            const quoteProductSelect = document.getElementById('quote-product');
-
-            // --- NEW: Auth State Elements ---
-            const adminLoginLink = document.getElementById('admin-login-link');
-            const adminLoginLinkMobile = document.getElementById('admin-login-link-mobile');
-            const adminDashboardLink = document.getElementById('admin-dashboard-link');
-            const adminDashboardLinkMobile = document.getElementById('admin-dashboard-link-mobile');
-            const logoutLink = document.getElementById('logout-link');
-            const logoutLinkMobile = document.getElementById('logout-link-mobile');
-
-            // --- NEW: Admin Dashboard Elements ---
-            const adminTabs = document.querySelectorAll('.admin-tab-link');
-            const adminPanels = document.querySelectorAll('.admin-panel');
-            const adminProductTableBody = document.getElementById('admin-product-table-body');
-            const adminAddForm = document.getElementById('admin-add-form');
-            const adminEditModal = document.getElementById('edit-modal');
-            const adminEditForm = document.getElementById('admin-edit-form');
-            const editModalClose = document.getElementById('edit-modal-close');
-            const editModalCancel = document.getElementById('edit-modal-cancel');
-
-            // --- Global State ---
-            let allProducts = [];
-            let currentEditProductId = null;
-
-            // ==================================================================
-            // UTILITY FUNCTIONS
-            // ==================================================================
-
-            // --- Show/Hide Page Sections ---
-            function showPage(pageId) {
-                pageSections.forEach(section => { section.hidden = true; });
-                const activePage = document.getElementById(pageId + '-page');
-                if (activePage) { activePage.hidden = false; }
-                mobileMenu.classList.add('hidden');
-            }
-
-
-            /// --- Show Status Message ---
-            function showStatus(message, isError = false) {
-                statusMessage.textContent = message;
-                statusMessage.classList.remove(isError ? 'bg-green-500' : 'bg-red-500');
-                statusMessage.classList.add(isError ? 'bg-red-500' : 'bg-green-500');
-                statusMessage.classList.remove('hidden');
-                statusMessage.classList.add('opacity-100');
-
-                setTimeout(() => {
-                    statusMessage.classList.remove('opacity-100');
-                    statusMessage.classList.add('hidden');
-                }, 3000);
-            }
-
-            // --- Get Auth Token ---
-            // --- FIX: ADDED getAuthToken FUNCTION ---
-            function getAuthToken() {
-                return localStorage.getItem('adminToken');
-            }
-
-            // --- Get Auth Header ---
-            function getAuthHeader() {
-                const token = localStorage.getItem('adminToken');
-                return token ? { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' } : { 'Content-Type': 'application/json' };
-            }
-
-            // --- Handle Auth Error (e.g., 401/403) ---
-            function handleAuthError(response) {
-                if (response.status === 401 || response.status === 403) {
-                    showStatus("Session expired or invalid. Please log in again.", true);
-                    logout();
-                    return true;
-                }
-                return false;
-            }
-
-
-            // ==================================================================
-            // NAVIGATION & AUTHENTICATION
-            // ==================================================================
-
-            // --- Page Navigation Link Listeners ---
-            navLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const pageId = link.getAttribute('data-page');
-                    showPage(pageId);
-                });
-            });
-
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-
-            // --- Show UI for Logged-In State ---
-            function showLoggedInUI() {
-                adminLoginLink.hidden = true;
-                adminLoginLinkMobile.hidden = true;
-                adminDashboardLink.hidden = false;
-                adminDashboardLinkMobile.hidden = false;
-                logoutLink.hidden = false;
-                logoutLinkMobile.hidden = false;
-            }
-
-            // --- Show UI for Logged-Out State ---
-            function showLoggedOutUI() {
-                adminLoginLink.hidden = false;
-                adminLoginLinkMobile.hidden = false;
-                adminDashboardLink.hidden = true;
-                adminDashboardLinkMobile.hidden = true;
-                logoutLink.hidden = true;
-                logoutLinkMobile.hidden = true;
-            }
-
-            // --- Check Login State on Page Load ---
-            function checkLoginState() {
-                const token = localStorage.getItem('adminToken');
-                if (token) {
-                    showLoggedInUI();
-                } else {
-                    showLoggedOutUI();
-                }
-            }
-
-            // --- Logout Function ---
-            function logout() {
-                localStorage.removeItem('adminToken');
-                showLoggedOutUI();
-                showPage('home');
-                showStatus("You have been logged out.");
-            }
-            logoutLink.addEventListener('click', (e) => { e.preventDefault(); logout(); });
-            logoutLinkMobile.addEventListener('click', (e) => { e.preventDefault(); logout(); });
-
-            // --- Admin Login Form ---
-            document.getElementById('login-form').addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const loginButton = document.getElementById('login-submit-button');
-                loginButton.disabled = true;
-                loginButton.textContent = "Logging in...";
-
-                const username = document.getElementById('login-username').value;
-                const password = document.getElementById('login-password').value;
-
-                try {
-                    const response = await fetch(`${API_URL}/api/auth/login`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ username, password })
-                    });
-                    if (!response.ok) { throw new Error('Incorrect username or password'); }
-                    const data = await response.json();
-
-                    localStorage.setItem('adminToken', data.jwt); // Store the token
-                    showStatus("Admin login successful!");
-                    document.getElementById('login-form').reset();
-
-                    showLoggedInUI(); // Update nav
-                    showPage('admin-dashboard'); // Show dashboard
-                    fetchAdminProducts(); // Load product data for the dashboard
-
-                } catch (error) {
-                    console.error('Login failed:', error);
-                    showStatus(error.message, true);
-                } finally {
-                    loginButton.disabled = false;
-                    loginButton.textContent = "Login";
-                }
-            });
-
-
-            // ==================================================================
-            // PUBLIC-FACING PAGES
-            // ==================================================================
-            // --- Product Image Helper ---
-            function getProductImage(product) {
-                // 1. Check for Binary Image Data (New System)
-                if (product.imageData) {
-                    // Ensure product.imageType exists, default to png if missing
-                    const mimeType = product.imageType || 'image/jpeg'; 
-                    return `data:${mimeType};base64,${product.imageData}`;
-                }
-                
-                // 2. Check for Legacy Image URL (Old System / Database URL)
-                // Ensure we don't double-prefix if the URL is already a data URI
-                if (product.imageUrl && !product.imageUrl.startsWith('data:')) {
-                    return product.imageUrl;
-                }
-
-                // 3. Fallback: Match by Name (For existing products without data or URL)
-                const name = product.name ? product.name.toLowerCase() : "";
-                if (name.includes("red brick")) return "./images/red-brick.jpg";
-                if (name.includes("cement brick")) return "./images/cement-brick.jpg";
-                if (name.includes("gattu") || name.includes("paver")) return "./images/gattu.jpg";
-                if (name.includes("multicolor")) return "./images/multicolor.jpeg";
-
-                // 4. Ultimate Fallback: Placeholder
-                return `https://placehold.co/600x400/993333/FFFFFF?text=${encodeURIComponent(product.name || "Product")}`;
-            }
-
-            // --- Public Product Loading ---
-            async function fetchProducts() {
-                try {
-                    const response = await fetch(`${API_URL}/api/products`);
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    allProducts = await response.json();
-                    renderProducts(allProducts);
-                    populateQuoteSelect(allProducts);
-                } catch (error) {
-                    console.error("Failed to fetch products:", error);
-                    productGrid.innerHTML = `<p class="col-span-full text-center text-red-500">Error loading products. Please make sure the backend services are running.</p>`;
-                }
-            }
-
-            function renderProducts(products) {
-                productGrid.innerHTML = '';
-                if (products.length === 0) {
-                    productGrid.innerHTML = `<p class="col-span-full text-center">No products available at this time.</p>`;
-                    return;
-                }
-
-                products.forEach(product => {
-                    const productCard = document.createElement('div');
-                    productCard.className = 'bg-white shadow-lg rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105';
-
-                    // Use new helper function for image
-                    const imageUrl = getProductImage(product.name);
-
-                    productCard.innerHTML = `
-                        <div class="bg-gray-200">
-                            <img src="${imageUrl}" alt="${product.name}" class="w-full h-64 object-cover" onerror="this.src='https://placehold.co/600x400/cccccc/FFFFFF?text=Image+Not+Found'">
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-2xl font-bold mb-2">${product.name}</h3>
-                            <p class="text-gray-700 mb-1"><span class="font-semibold">Type:</span> ${product.brickType}</p>
-                            <p class="text-gray-700 mb-1"><span class="font-semibold">Color:</span> ${product.color}</p>
-                            <p class="text-gray-700 mb-4"><span class="font-semibold">Price:</span> ₹${product.unitPrice.toFixed(2)}</small> (per unit)</p>
-                            <a href="#" class="nav-link-card bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700 transition duration-300" data-page="quote" data-product-id="${product.productId}">Get a Quote</a>
-                        </div>
-                    `;
-                    productCard.querySelector('.nav-link-card').addEventListener('click', (e) => {
-                        e.preventDefault();
-                        showPage('quote');
-                        // Use product.productId
-                        quoteProductSelect.value = e.target.getAttribute('data-product-id');
-                    });
-                    productGrid.appendChild(productCard);
-                });
-            }
-
-            function populateQuoteSelect(products) {
-                quoteProductSelect.innerHTML = '<option value="">-- Select a Brick --</option>';
-                products.forEach(product => {
-                    const option = document.createElement('option');
-                    // Use product.productId
-                    option.value = product.productId;
-                    option.textContent = `${product.name} (₹${product.unitPrice.toFixed(2)})`;
-                    quoteProductSelect.appendChild(option);
-                });
-            }
-
-            // --- Form Submissions ---
-
-
-            // --- "Get a Quote" Form (UPDATED with validation) ---
-            document.getElementById('quote-form').addEventListener('submit', async (e) => {
-                e.preventDefault();
-
-                const selectedProductId = document.getElementById('quote-product').value;
-                const quantity = document.getElementById('quote-quantity').value;
-                const deliveryLocation = document.getElementById('quote-location').value;
-
-                // We add this check to prevent submitting an empty/invalid product ID.
-                if (!selectedProductId) {
-                    showStatus("Please select a brick type.", true);
-                    return; // Stop the function here
-                }
-
-                const quoteRequest = {
-                    customerId: 0, // Placeholder 0 for a public "guest" quote
-                    deliveryLocation: deliveryLocation,
-                    items: [
-                        {
-                            productId: parseInt(selectedProductId),
-                            quantity: parseInt(quantity)
-                        }
-                    ]
-                };
-
-                try {
-                    // Call the NEW public endpoint
-                    const response = await fetch(`${API_URL}/api/orders/public-quote`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(quoteRequest)
-                    });
-
-                    if (!response.ok) {
-                        // --- THIS IS THE NEW ERROR HANDLING ---
-                        let errorMsg = 'Quote submission failed. Please try again.';
-                        try {
-                            // Try to get a specific message from Spring Boot
-                            const errorData = await response.json();
-                            // Check for Spring's specific "error" field
-                            errorMsg = errorData.error || errorData.message || `Error ${response.status}`;
-                        } catch (jsonError) {
-                            // If the response isn't JSON, just use the status
-                            errorMsg = `Error: ${response.status} ${response.statusText}`;
-                        }
-                        throw new Error(errorMsg); // Throw the detailed error
-                    }
-
-                    showStatus("Quote request sent successfully! We will contact you soon.");
-                    document.getElementById('quote-form').reset();
-
-                    // Go back home after 5 seconds, as requested
-                    setTimeout(() => {
-                        showPage('home'); // Go back home
-                    }, 5000);
-
-                } catch (error) {
-                    console.error('Quote submission failed:', error);
-                    // This will now show the *detailed* error message (e.g., "Forbidden")
-                    showStatus(error.message, true);
-                }
-            });
-
-            // --- "Contact Us" Form ---
-            const contactForm = document.getElementById('contact-form');
-            // const contactSubmitButton = document.getElementById('contact-submit-button');
-            contactForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const contactSubmitButton = contactForm.querySelector('button[type="submit"]');
-
-                contactSubmitButton.disabled = true;
-                contactSubmitButton.textContent = "Sending...";
-
-                const contactData = {
-                    name: document.getElementById('contact-name').value,
-                    email: document.getElementById('contact-email').value,
-                    message: document.getElementById('contact-message').value
-                };
-
-                try {
-                    // Call our NEW endpoint via the API Gateway
-                    const response = await fetch(`${API_URL}/api/v1/contact`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(contactData)
-                    });
-
-                    if (!response.ok) {
-                        let errorMsg = 'Message failed to send.';
-                        try {
-                            // Try to get validation errors from Spring Boot
-                            const errorData = await response.json();
-                            if (errorData.errors) {
-                                // Join multiple validation errors
-                                errorMsg = Object.values(errorData.errors).join(', ');
-                            } else {
-                                errorMsg = errorData.message || `Error: ${response.status}`;
-                            }
-                        } catch (jsonError) {
-                            errorMsg = `Error: ${response.status} ${response.statusText}`;
-                        }
-                        throw new Error(errorMsg);
-                    }
-
-                    // Success!
-                    await response.json();
-                    showStatus("Message sent successfully! We will get back to you soon.");
-                    contactForm.reset();
-
-                } catch (error) {
-                    console.error('Contact form submission failed:', error);
-                    showStatus(error.message, true);
-                } finally {
-                    // Re-enable the button whether it succeeded or failed
-                    contactSubmitButton.disabled = false;
-                    contactSubmitButton.textContent = "Send Message";
-                }
-            });
-
-            // ==================================================================
-            // ADMIN DASHBOARD
-            // ==================================================================
-            fetchAdminProducts();
-            // --- Admin Tab Navigation ---
-            adminTabs.forEach(tab => {
-                tab.addEventListener('click', (e) => {
-                    e.preventDefault();
-
-                    // Style tabs
-                    adminTabs.forEach(t => {
-                        t.classList.remove('bg-white', 'text-blue-600', 'border-b-2', 'border-blue-600');
-                        t.classList.add('text-gray-500', 'hover:text-gray-700');
-                    });
-                    tab.classList.add('bg-white', 'text-blue-600', 'border-b-2', 'border-blue-600');
-                    tab.classList.remove('text-gray-500', 'hover:text-gray-700');
-
-                    // Show panel
-                    const panelId = tab.id.replace('admin-tab-', 'admin-panel-');
-                    adminPanels.forEach(panel => {
-                        panel.hidden = (panel.id !== panelId);
-                    });
-                });
-            });
-
-            // --- Fetch and Render Products for Admin Table ---
-            async function fetchAdminProducts() {
-                adminProductTableBody.innerHTML = `<tr><td colspan="5" class="p-4 text-center">Loading products...</td></tr>`;
-                try {
-                    const response = await fetch(`${API_URL}/api/products`, {
-                        method: 'GET',
-                        headers: getAuthHeader()
-                    });
-
-                    if (handleAuthError(response)) return; // Stop if auth failed
-                    if (!response.ok) throw new Error("Failed to fetch products");
-
-                    const products = await response.json();
-                    renderAdminProductTable(products);
-
-                } catch (error) {
-                    console.error("Error fetching admin products:", error);
-                    adminProductTableBody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-red-500">${error.message}</td></tr>`;
-                }
-            }
-
-            // --- Render Admin Product Table ---
-            function renderAdminProductTable(products) {
-                adminProductTableBody.innerHTML = '';
-                if (products.length === 0) {
-                    adminProductTableBody.innerHTML = `<tr><td colspan="5" class="p-4 text-center">No products found.</td></tr>`;
-                    return;
-                }
-
-                products.forEach(product => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td class="px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-900">${product.name}</td>
-                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">${product.brickType}</td>
-                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">₹${product.unitPrice.toFixed(2)}</td>
-                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">${product.stockQuantity}</td>
-                        <td class="px-4 py-3 whitespace-nowrap text-sm font-medium space-x-2">
-                            <button class="admin-edit-btn text-blue-600 hover:text-blue-900" data-id="${product.productId}">Edit</button>
-                            <button class="admin-delete-btn text-red-600 hover:text-red-900" data-id="${product.productId}">Delete</button>
-                        </td>
-                    `;
-                    // Add listeners for the new buttons
-                    // We ensure the ID is parsed correctly
-                    const pId = product.productId;
-                    row.querySelector('.admin-edit-btn').addEventListener('click', () => openEditModal(pId));
-                    row.querySelector('.admin-delete-btn').addEventListener('click', () => deleteProduct(pId));
-
-                    adminProductTableBody.appendChild(row);
-                });
-            }
-
-            // --- Admin "Add Product" Form ---
-            adminAddForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const button = document.getElementById('add-product-button');
-                button.disabled = true;
-                button.textContent = "Adding...";
-
-                const product = {
-                    name: document.getElementById('add-name').value,
-                    brickType: document.getElementById('add-type').value,
-                    color: document.getElementById('add-color').value,
-                    unitPrice: parseFloat(document.getElementById('add-price').value),
-                    stockQuantity: parseInt(document.getElementById('add-stock').value)
-                };
-
-                // Create FormData for Multipart Upload
-                const formData = new FormData();
-
-                // 1. Add Product JSON as a specific Blob with content-type application/json
-                const productBlob = new Blob([JSON.stringify(product)], { type: 'application/json' });
-                formData.append('product', productBlob);
-
-                // 2. Add Image File (if selected)
-                const fileInput = document.getElementById('add-image-file');
-                if (fileInput.files.length > 0) {
-                    formData.append('imageFile', fileInput.files[0]);
-                }
-                console.log("Submitting Add Product FormData:", formData);
-                try {
-                    const token = getAuthToken();
-                    const response = await fetch(`${API_URL}/api/products`, {
-                        method: 'POST',
-                        headers: {
-                            'Authorization': `Bearer ${token}`
-                            // Note: Content-Type is NOT set manually. fetch sets it to multipart/form-data with boundary automatically.
-                        },
-                        body: formData
-                    });
-                    console.log("Add Product Response Status:", response.status);
-                    if (handleAuthError(response)) return;
-                    console.log("Add Product Response OK:", response.ok);
-                    if (!response.ok) throw new Error("Failed to create product");
-                    console.log("Add Product Response Received");
-                    showStatus("Product Added Successfully!");
-                    adminAddForm.reset();
-                    console.log("Add Product Form Reset");
-
-                    // Reset image preview
-                    const addImagePreview = document.getElementById('add-image-preview');
-                    addImagePreview.classList.add('hidden');
-                    addImagePreview.src = "";
-
-                    fetchAdminProducts(); // Refresh the table
-                    fetchProducts(); // Refresh the public products page
-
-                } catch (error) {
-                    console.error("Add product failed:", error);
-                    showStatus(error.message, true);
-                } finally {
-                    button.disabled = false;
-                    button.textContent = "Add Product";
-                }
-            });
-
-            // Image Previews
-            addImageFile.addEventListener('change', (e) => {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = (e) => {
-                        addImagePreview.src = e.target.result;
-                        addImagePreview.classList.remove('hidden');
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-            editImageFile.addEventListener('change', (e) => {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = (e) => editImagePreview.src = e.target.result;
-                    reader.readAsDataURL(file);
-                }
-            });
-
-            // --- Admin "Delete Product" Function ---
-            async function deleteProduct(id) {
-                if (!confirm("Are you sure you want to delete this product? This cannot be undone.")) {
-                    return;
-                }
-
-                try {
-                    const response = await fetch(`${API_URL}/api/products/${id}`, {
-                        method: 'DELETE',
-                        headers: getAuthHeader()
-                    });
-
-                    if (handleAuthError(response)) return;
-                    if (!response.ok) throw new Error("Failed to delete product");
-
-                    showStatus("Product deleted successfully.");
-                    fetchAdminProducts(); // Refresh the table
-                    fetchProducts(); // Refresh the public products page
-
-                } catch (error) {
-                    console.error("Delete product failed:", error);
-                    showStatus(error.message, true);
-                }
-            }
-
-            // --- Admin "Edit Product" Modal ---
-            // Edit Modal Logic
-             function openEditModal(id) {
-                currentEditProductId = id;
-                const product = allProducts.find(p => p.productId === id);
-                if (!product) return;
-                
-                document.getElementById('edit-id').value = product.productId;
-                document.getElementById('edit-name').value = product.name;
-                document.getElementById('edit-type').value = product.brickType;
-                document.getElementById('edit-color').value = product.color;
-                document.getElementById('edit-price').value = product.unitPrice;
-                document.getElementById('edit-stock').value = product.stockQuantity;
-                
-                document.getElementById('edit-image-file').value = "";
-                document.getElementById('edit-image-preview').src = getProductImage(product);
-                
-                adminEditModal.classList.remove('opacity-0', 'pointer-events-none');
-                adminEditModal.querySelector('.modal-content').classList.remove('scale-95');
-            }
-
-            function closeEditModal() {
-                adminEditModal.classList.add('opacity-0', 'pointer-events-none');
-                adminEditModal.querySelector('.modal-content').classList.add('scale-95');
-                currentEditProductId = null;
-                adminEditForm.reset();
-            }
-
-
-            editModalClose.addEventListener('click', closeEditModal);
-            editModalCancel.addEventListener('click', closeEditModal);
-
-            // Edit Form Submit
-            adminEditForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const btn = document.getElementById('edit-product-button');
-                btn.disabled = true;
-                btn.textContent = "Saving...";
-
-                const product = {
-                    productId: currentEditProductId,
-                    name: document.getElementById('edit-name').value,
-                    brickType: document.getElementById('edit-type').value,
-                    color: document.getElementById('edit-color').value,
-                    unitPrice: parseFloat(document.getElementById('edit-price').value),
-                    stockQuantity: parseInt(document.getElementById('edit-stock').value)
-                };
-
-                const formData = new FormData();
-                formData.append('product', new Blob([JSON.stringify(product)], { type: 'application/json' }));
-                const fileInput = document.getElementById('edit-image-file');
-                if (fileInput.files.length > 0) formData.append('imageFile', fileInput.files[0]);
-
-                try {
-                    const response = await fetch(`${API_URL}/api/products/${currentEditProductId}`, {
-
-                        method: 'PUT',
-                        headers: { 'Authorization': `Bearer ${getAuthToken()}` },
-                        body: formData
-                    });
-                    if (handleAuthError(response)) return;
-                    if (!response.ok) throw new Error("Update failed");
-
-                    showStatus("Product updated!");
-                    closeEditModal();
-                    fetchAdminProducts();
-                    fetchProducts();
-                } catch (error) {
-                    console.error(error);
-                    showStatus("Update failed.", true);
-                } finally {
-                    btn.disabled = false;
-                    btn.textContent = "Save Changes";
-                }
-            });
-
-            // --- Function to Load Gallery Images from DB ---
-            async function loadGallery() {
-                const galleryGrid = document.getElementById('gallery-product-grid');
-
-                // Safety check: ensure the element exists before trying to modify it
-                if (!galleryGrid) return;
-
-                try {
-                    // 1. Fetch data from your backend
-                    const response = await fetch('http://localhost:9191/api/products');
-
-                    if (!response.ok) throw new Error("Failed to fetch products");
-
-                    const products = await response.json();
-
-                    // 2. Handle empty database
-                    if (products.length === 0) {
-                        galleryGrid.innerHTML = '<p class="col-span-full text-center text-gray-500">No products found in database.</p>';
-                        return;
-                    }
-
-                    // 3. Clear the "Loading..." text
-                    galleryGrid.innerHTML = '';
-
-                    // 4. Loop through products and create HTML
-                    products.forEach(product => {
-                        // Logic to determine image source: DB URL -> Local Helper -> Placeholder
-                        let imgSrc = product.imageUrl;
-
-                        // If DB url is empty, try to match local images based on name (Optional helper)
-                        if (!imgSrc) {
-                            const lowerName = product.name.toLowerCase();
-                            if (lowerName.includes("red")) imgSrc = "./images/red-brick.jpg";
-                            else if (lowerName.includes("cement")) imgSrc = "./images/cement-brick.jpg";
-                            else if (lowerName.includes("gattu") || lowerName.includes("paver")) imgSrc = "./images/gattu.jpg";
-                            else imgSrc = `https://placehold.co/600x400/cccccc/FFFFFF?text=${encodeURIComponent(product.name)}`;
-                        }
-
-                        // Create the card HTML
-                        const cardHTML = `
-                <div class="rounded-lg shadow-md overflow-hidden shrink-0 group relative">
-                    <img src="${imgSrc}" 
-                         alt="${product.name}" 
-                         class="w-full h-64 object-contain transition-transform duration-300 group-hover:scale-105"
-                         onerror="this.src='https://placehold.co/600x400/cccccc/FFFFFF?text=Image+Not+Found'">
-                    
-                    <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-center py-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                        ${product.name}
-                    </div>
-                </div>
-            `;
-
-                        // Append to grid
-                        galleryGrid.innerHTML += cardHTML;
-                    });
-
-                } catch (error) {
-                    console.error("Gallery Load Error:", error);
-                    galleryGrid.innerHTML = '<p class="col-span-full text-center text-red-500">Error loading gallery images.</p>';
-                }
-            }
-
-            // --- Trigger the load ---
-            document.addEventListener('DOMContentLoaded', () => {
-                loadGallery();
-                // ... your other init code ...
-            });
-
-            // --- Initial Load ---
-            fetchProducts();
-            checkLoginState();
-            loadGallery();
-
-        });
-    </script>
+    <script src="js/app.js"></script>
 </body>
 
 </html>
