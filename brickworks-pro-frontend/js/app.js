@@ -15,10 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const viewMessageBody = document.getElementById('view-message-body');
     let _currentMessageId = null;
 
-    // Simulation support removed: mark-read no longer runs locally; it always calls backend
-    // Keep last fetched messages in memory so we can re-render after local simulation
+    // Mark-read always uses backend; local simulation removed
+    // Keep last fetched messages in memory for re-rendering and updates
     let lastFetchedMessages = [];
-    // No local simulation state
+    
 
     // Fetch and render admin messages
     window.fetchAdminMessages = async function () {
@@ -36,9 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Store copy for local simulation updates
+            // Store a copy for re-rendering and local UI updates
             lastFetchedMessages = msgs.map(m => ({ ...m }));
-            // No simulated state to apply — messages' status comes from the backend
+            // No client-side flags applied — message status comes from the backend
 
             renderAdminMessages(lastFetchedMessages);
 
@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 { method: 'DELETE', headers: getAuthHeader() });
             if (handleAuthError(res)) return; if (!res.ok) throw new Error('Delete failed');
             showStatus('Message deleted.');
-            // No simulation persisted flags to clear
+            // No persisted flags to clear
             if (typeof window.fetchAdminMessages === 'function') window.fetchAdminMessages();
         } catch (err) { console.error(err); showStatus(err.message || 'Delete failed', true); }
     }
