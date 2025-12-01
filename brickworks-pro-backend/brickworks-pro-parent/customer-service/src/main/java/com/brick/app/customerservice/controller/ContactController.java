@@ -1,11 +1,13 @@
 package com.brick.app.customerservice.controller;
 
 import com.brick.app.customerservice.dto.ContactMessageRequest;
+import com.brick.app.customerservice.entity.ContactMessage;
 import com.brick.app.customerservice.service.ContactService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -31,5 +33,20 @@ public class ContactController {
 
         // Return a 200 OK response with a success message.
         return ResponseEntity.ok(Map.of("message", "Message received successfully!"));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ContactMessage>> getAllMessages() {
+        return ResponseEntity.ok(contactService.getAllMessages());
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> deleteMessage(@PathVariable String id) {
+        try {
+            contactService.deleteMessage(id);
+            return ResponseEntity.noContent().build();
+        } catch (Exception e){
+            return ResponseEntity.notFound().build();
+        }
     }
 }

@@ -38,7 +38,7 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)  // Sets the HTTP status code to 201 Created on success
-    public ResponseEntity<?> createProduct(@RequestPart Product product,@RequestPart(value = "imageFile", required = false) MultipartFile imageFile) { // @RequestBody tells Spring to convert the incoming JSON into a Product object
+    public ResponseEntity<?> createProduct(@RequestPart("product") Product product,@RequestPart(value = "imageFile", required = false) MultipartFile imageFile) { // @RequestBody tells Spring to convert the incoming JSON into a Product object
         try {
             Product saveProduct = productService.createProduct(product, imageFile);
             return new ResponseEntity<>(saveProduct, HttpStatus.CREATED);
@@ -74,13 +74,13 @@ public class ProductController {
      * This is a protected endpoint and requires an authenticated JWT.
      *
      * @param id             The ID of the product to update.
-     * @param productDetails The new product data from the request body.
+     * @param product The new product data from the request body.
      * @return A 200 OK response with the updated product, or 404 Not Found.
      */
     @PutMapping(value = "{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<?> updateProduct(@PathVariable Long id, @RequestPart Product productDetails,@RequestPart(value = "imageFile", required = false) MultipartFile imageFile) {
+    public ResponseEntity<?> updateProduct(@PathVariable Long id, @RequestPart("product") Product product,@RequestPart(value = "imageFile", required = false) MultipartFile imageFile) {
         try {
-            Product updatedProduct = productService.updateProduct(id, productDetails, imageFile);
+            Product updatedProduct = productService.updateProduct(id, product, imageFile);
             // Return 200 OK with the updated product
             return ResponseEntity.ok(updatedProduct);
         } catch (RuntimeException e) {

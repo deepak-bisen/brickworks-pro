@@ -6,10 +6,12 @@ import com.brick.app.customerservice.repository.ContactMessageRepository;
 import com.brick.app.customerservice.service.ContactService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class ContactServiceImpl implements ContactService {
@@ -45,5 +47,15 @@ public class ContactServiceImpl implements ContactService {
 
         ContactMessage savedMessage = contactMessageRepository.save(contactMessage);
         log.info("Message saved to database with ID: {}", savedMessage.getId());
+    }
+
+    @Override
+    public List<ContactMessage> getAllMessages(){
+        return contactMessageRepository.findAll(Sort.by(Sort.Direction.DESC, "receivedAt"));
+    }
+
+    @Override
+    public void  deleteMessage(String id){
+        contactMessageRepository.deleteById(id);
     }
 }

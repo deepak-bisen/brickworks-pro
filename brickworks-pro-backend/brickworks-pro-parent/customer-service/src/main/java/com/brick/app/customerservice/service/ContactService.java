@@ -1,6 +1,9 @@
 package com.brick.app.customerservice.service;
 
 import com.brick.app.customerservice.dto.ContactMessageRequest;
+import com.brick.app.customerservice.entity.ContactMessage;
+
+import java.util.List;
 
 /**
  * Service interface for handling contact form logic.
@@ -11,4 +14,8 @@ public interface ContactService {
      * @param request The validated contact form data.
      */
     void processContactMessage(ContactMessageRequest request);
+
+    List<ContactMessage> getAllMessages();
+
+    void deleteMessage(String id);
 }

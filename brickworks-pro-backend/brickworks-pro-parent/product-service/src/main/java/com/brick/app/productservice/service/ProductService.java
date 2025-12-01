@@ -16,5 +16,5 @@ public interface ProductService {
 
     public void deleteProduct(Long id);
 
-    public Product updateProduct(Long id, Product productDetails, MultipartFile imageFile) throws IOException;
+    public Product updateProduct(Long id, Product product, MultipartFile imageFile) throws IOException;
 }

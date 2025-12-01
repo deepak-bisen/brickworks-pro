@@ -50,21 +50,21 @@ public class ProductServiceImpl implements ProductService {
      * Updates an existing product.
      *
      * @param id : The ID of the product to update.
-     * @param productDetails : The new details for the product.
+     * @param product : The new details for the product.
      * @return The updated product.
      * @throws RuntimeException if the product is not found.
      */
-    public Product updateProduct(Long id, Product productDetails, MultipartFile imageFile) throws IOException {
+    public Product updateProduct(Long id, Product product, MultipartFile imageFile) throws IOException {
         // Find the existing product
         Product existingProduct = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found with id: " + id));
 
         // Update the fields
-        existingProduct.setName(productDetails.getName());
-        existingProduct.setColor(productDetails.getColor());
-        existingProduct.setBrickType(productDetails.getBrickType());
-        existingProduct.setUnitPrice(productDetails.getUnitPrice());
-        existingProduct.setStockQuantity(productDetails.getStockQuantity());
+        existingProduct.setName(product.getName());
+        existingProduct.setColor(product.getColor());
+        existingProduct.setBrickType(product.getBrickType());
+        existingProduct.setUnitPrice(product.getUnitPrice());
+        existingProduct.setStockQuantity(product.getStockQuantity());
 
         if (imageFile != null && !imageFile.isEmpty()) {
             existingProduct.setImageName(imageFile.getOriginalFilename());
