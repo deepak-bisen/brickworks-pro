@@ -49,4 +49,18 @@ public class ContactController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> updateMessageStatus(@PathVariable String id, @RequestBody Map<String, String> updates) {
+        try {
+            String status = updates.get("status");
+            if (status == null) {
+                return ResponseEntity.badRequest().body(Map.of("error", "Status is required"));
+            }
+            contactService.updateMessageStatus(id, status);
+            return ResponseEntity.ok(Map.of("message", "Status updated"));
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

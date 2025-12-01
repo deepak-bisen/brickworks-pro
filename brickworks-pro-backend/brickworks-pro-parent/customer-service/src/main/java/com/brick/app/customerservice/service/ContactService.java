@@ -18,4 +18,6 @@ public interface ContactService {
     List<ContactMessage> getAllMessages();
 
     void deleteMessage(String id);
+
+    void updateMessageStatus(String id, String status);
 }

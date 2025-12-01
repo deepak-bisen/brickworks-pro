@@ -50,12 +50,25 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public List<ContactMessage> getAllMessages(){
+    public List<ContactMessage> getAllMessages() {
         return contactMessageRepository.findAll(Sort.by(Sort.Direction.DESC, "receivedAt"));
     }
 
     @Override
-    public void  deleteMessage(String id){
-        contactMessageRepository.deleteById(id);
+    public void deleteMessage(String id) {
+        if (contactMessageRepository.existsById(id)) {
+            contactMessageRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("Message not found with id: " + id);
+        }
+    }
+
+    @Override
+    public void updateMessageStatus(String id, String status) {
+        ContactMessage message = contactMessageRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Message not found with id: " + id));
+
+        message.setStatus(status);
+        contactMessageRepository.save(message);
     }
 }
