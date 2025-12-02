@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mark-read always uses backend; local simulation removed
     // Keep last fetched messages in memory for re-rendering and updates
     let lastFetchedMessages = [];
-    
+
 
     // Fetch and render admin messages
     window.fetchAdminMessages = async function () {
@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
         await markMessageRead(_currentMessageId); closeMessageModal();
     });
 
-    
+
     async function deleteMessage(id) {
         // Normalize id
         const sid = String(id);
@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Always call the backend
         try {
-            const res = await fetch(`${API_URL}/api/v1/contact/${id}`, 
+            const res = await fetch(`${API_URL}/api/v1/contact/${id}`,
                 { method: 'DELETE', headers: getAuthHeader() });
             if (handleAuthError(res)) return; if (!res.ok) throw new Error('Delete failed');
             showStatus('Message deleted.');
@@ -405,7 +405,7 @@ document.addEventListener('DOMContentLoaded', () => {
             populateQuoteSelect(allProducts);
         } catch (error) {
             console.error("Failed to fetch products:", error);
-            productGrid.innerHTML = `<p class="col-span-full text-center text-red-500">Error loading products. Please make sure the backend services are running.</p>`;
+            productGrid.innerHTML = `<p class="col-span-full text-center text-red-500">Error loading products, Failed to fetch products.</p>`;
         }
     }
 
@@ -475,6 +475,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const selectedProductId = document.getElementById('quote-product').value;
         const quantity = document.getElementById('quote-quantity').value;
         const deliveryLocation = document.getElementById('quote-location').value;
+        // --- NEW: Get Customer Details ---
+        const name = document.getElementById('quote-name').value;
+        const email = document.getElementById('quote-email').value;
+        const phone = document.getElementById('quote-phone').value;
 
         // We add this check to prevent submitting an empty/invalid product ID.
         if (!selectedProductId) {
@@ -483,8 +487,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const quoteRequest = {
-            customerId: 0, // Placeholder 0 for a public "guest" quote
+            // Default to 0 string, will be overwritten by backend logic if email provided
+            customerId: 0, // Placeholder 0 for a public "guest" quote 
             deliveryLocation: deliveryLocation,
+            // --- NEW: Map Frontend fields to DTO fields ---
+            name: name,
+            email: email,
+            phone: phone,
+            address: deliveryLocation, // Map delivery location to address for customer creation
             items: [
                 {
                     productId: parseInt(selectedProductId),
@@ -739,6 +749,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+
+
     // Image Previews
     const addImageFile = document.getElementById('add-image-file');
     const addImagePreview = document.getElementById('add-image-preview');
@@ -866,6 +878,108 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.textContent = "Save Changes";
         }
     });
+
+    // --- Global Cache for lookups ---
+    let customerCache = {};
+
+    // --- Fetch Quotes Logic ---
+    window.fetchAdminQuotes = async function () {
+        const tbody = document.getElementById('admin-quotes-table-body');
+        if (!tbody) return;
+
+        tbody.innerHTML = '<tr><td colspan="6" class="p-4 text-center">Loading data...</td></tr>';
+
+        try {
+            // 1. Fetch Orders
+            const orderRes = await fetch(`${API_URL}/api/orders`, { headers: getAuthHeader() });
+            if (handleAuthError(orderRes)) return;
+            if (!orderRes.ok) {
+                throw new Error('Failed to fetch orders');
+            }
+            const orders = await orderRes.json();
+
+            // 2. Fetch Customers (to map IDs to Names) - Only if not cached or force refresh
+            // Note: In a real app, we might fetch individual customers or paginate. 
+            // Here we fetch all for simplicity given the scope.
+            try {
+                const custRes = await fetch(`${API_URL}/api/customers`, { headers: getAuthHeader() });
+                if (custRes.ok) {
+                    const customers = await custRes.json();
+                    customers.forEach(c => customerCache[c.customerId] = c);
+                }
+            } catch (e) { console.warn("Failed to fetch customer details", e); }
+
+            if (!orders || orders.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" class="p-4 text-center text-gray-500">No quotes found.</td></tr>';
+                return;
+            }
+
+            // 3. Render Table
+            tbody.innerHTML = orders.map(order => {
+                const customer = customerCache[order.customerId] || { name: 'Unknown/Guest', email: 'N/A', phone: '' };
+                const date = new Date(order.orderDate).toLocaleDateString() + ' ' + new Date(order.orderDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+                // Build Item Summary
+                const itemsHtml = order.orderDetails.map(od => {
+                    // Find product name from global allProducts
+                    const prod = allProducts.find(p => p.productId === od.productId) || { name: 'Unknown Item' };
+                    return `<div>${prod.name} x ${od.quantity}</div>`;
+                }).join('');
+
+                // Status Colors
+                let statusColor = 'bg-yellow-100 text-yellow-800'; // Default Pending
+                if (order.status === 'APPROVED') statusColor = 'bg-green-100 text-green-800';
+                if (order.status === 'REJECTED') statusColor = 'bg-red-100 text-red-800';
+                if (order.status === 'DELIVERED') statusColor = 'bg-blue-100 text-blue-800';
+
+                return `
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-2 text-sm text-gray-500">${date}</td>
+                                <td class="px-4 py-2">
+                                    <div class="text-sm font-medium text-gray-900">${customer.name}</div>
+                                    <div class="text-xs text-gray-500">${customer.email}</div>
+                                    <div class="text-xs text-gray-500">${customer.phone || ''}</div>
+                                    <div class="text-xs text-gray-400 italic">${order.deliveryLocation || ''}</div>
+                                </td>
+                                <td class="px-4 py-2 text-sm text-gray-700">${itemsHtml}</td>
+                                <td class="px-4 py-2 text-sm font-bold text-gray-900">₹${order.totalCost.toFixed(2)}</td>
+                                <td class="px-4 py-2">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${statusColor}">
+                                        ${order.status}
+                                    </span>
+                                </td>
+                                <td class="px-4 py-2 text-sm font-medium space-y-1">
+                                    ${order.status !== 'APPROVED' ? `<button onclick="updateStatus(${order.orderId}, 'APPROVED')" class="text-green-600 hover:text-green-900 block">Approve</button>` : ''}
+                                    ${order.status !== 'REJECTED' ? `<button onclick="updateStatus(${order.orderId}, 'REJECTED')" class="text-red-600 hover:text-red-900 block">Reject</button>` : ''}
+                                </td>
+                            </tr>
+                        `;
+            }).join('');
+
+        } catch (err) {
+            console.error(err);
+            tbody.innerHTML = '<tr><td colspan="6" class="p-4 text-center text-red-500">Error loading data.</td></tr>';
+        }
+    };
+
+    window.updateStatus = async (id, status) => {
+        if (!confirm(`Change status to ${status}?`)) return;
+        if (!getAuthToken()) { showStatus('Please log in as admin to update orders.', true); return; }
+        try {
+            const res = await fetch(`${API_URL}/api/orders/${id}/status`, {
+                method: 'PATCH',
+                headers: getAuthHeader(),
+                body: JSON.stringify({ status: status })
+            });
+            if (handleAuthError(res)) return;
+            if (!res.ok) throw new Error("Update failed");
+
+            showStatus("Status Updated");
+            fetchAdminQuotes(); // Refresh list
+        } catch (e) {
+            showStatus("Update failed", true);
+        }
+    };
 
     // --- Function to Load Gallery Images from DB ---
     async function loadGallery() {

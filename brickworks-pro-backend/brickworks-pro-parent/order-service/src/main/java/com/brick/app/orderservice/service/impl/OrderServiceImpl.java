@@ -1,24 +1,24 @@
 package com.brick.app.orderservice.service.impl;
 
 import com.brick.app.orderservice.dto.CustomerDTO;
+import com.brick.app.orderservice.dto.OrderDTO;
 import com.brick.app.orderservice.dto.OrderRequestDTO;
 import com.brick.app.orderservice.dto.ProductDTO;
 import com.brick.app.orderservice.entity.Order;
 import com.brick.app.orderservice.entity.OrderDetails;
 import com.brick.app.orderservice.repository.OrderRepository;
+import com.brick.app.orderservice.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
-public class OrderServiceImpl {
+public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderRepository orderRepository;
@@ -30,7 +30,8 @@ public class OrderServiceImpl {
      * This is the original, protected method for admins.
      * It sets the status to PENDING by default.
      */
-    @Transactional // This annotation ensures that the entire method runs in a single database transaction. If any part fails, all database changes are rolled back.
+    @Transactional
+    // This annotation ensures that the entire method runs in a single database transaction. If any part fails, all database changes are rolled back.
     public Order createOrder(OrderRequestDTO orderRequest) {
         return createOrderWithStatus(orderRequest, "PENDING");
     }
@@ -50,25 +51,26 @@ public class OrderServiceImpl {
      */
     public Order createOrderWithStatus(OrderRequestDTO orderRequest, String status) {
 
-         String finalCustomerId = orderRequest.getCustomerId();
+        String finalCustomerId = orderRequest.getCustomerId();
 
-        // Step 1: If no ID provided, but we have details, create/fetch customer via Customer Service
-        if (finalCustomerId == null || finalCustomerId.isEmpty() || finalCustomerId.equals("0") && orderRequest.getEmail() != null){
-            try{
+        // Step 1: If no ID provided, but we have details,
+        // create/fetch customer if needed via Customer Service
+        if (finalCustomerId == null || finalCustomerId.isEmpty() || finalCustomerId.equals("0") && orderRequest.getEmail() != null) {
+            try {
                 //prepare payload for Customer Service
                 Map<String, String> customerPayload = new HashMap<>();
-                customerPayload.put("name",orderRequest.getName());
-                customerPayload.put("phone",orderRequest.getPhone());
-                customerPayload.put("email",orderRequest.getEmail());
+                customerPayload.put("name", orderRequest.getName());
+                customerPayload.put("phone", orderRequest.getPhone());
+                customerPayload.put("email", orderRequest.getEmail());
 
                 // Default address to delivery location if creating new
-                customerPayload.put("address",orderRequest.getDeliveryLocation());
+                customerPayload.put("address", orderRequest.getDeliveryLocation());
 
                 // Call Customer Service (Service Discovery handles the URL)
-                CustomerDTO customerResponse = restTemplate.postForObject("http://customer-service/api/customers",customerPayload,CustomerDTO.class);
+                CustomerDTO customerResponse = restTemplate.postForObject("http://customer-service/api/customers", customerPayload, CustomerDTO.class);
 
-                if (customerResponse != null){
-                    finalCustomerId = customerResponse.getId();
+                if (customerResponse != null) {
+                    finalCustomerId = customerResponse.getCustomerId();
                 }
             } catch (Exception e) {
                 System.err.println("Failed To Create Customer: " + e.getMessage());
@@ -88,6 +90,7 @@ public class OrderServiceImpl {
         double totalCost = 0.0;
 
         // Step 3: Loop through each item in the incoming order request.
+        // Process Items
         for (var itemRequest : orderRequest.getItems()) {
             // Step 3a: Call the product-service to get the product's current price and details.
             // We use the service name "product-service" in the URL. Eureka and @LoadBalanced handle the rest.
@@ -120,5 +123,34 @@ public class OrderServiceImpl {
 
         // Step 5: Save the fully constructed Order object (along with its OrderDetails, thanks to cascading) to the database.
         return orderRepository.save(order);
+    }
+
+    @Override
+    public List<Order> getAllOrders() {
+
+        return orderRepository.findAll(Sort.by(Sort.Direction.DESC, "orderDate"));
+    }
+
+    @Override
+    public OrderDTO updateOrderStatus(Long orderId, String status) {
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new RuntimeException("Order not found with id: " + orderId));
+
+        order.setStatus(status);
+        Order savedOrder = orderRepository.save(order);
+
+        return mapToDTO(savedOrder);
+    }
+
+    // --- Helper Method to convert Entity to DTO ---
+    private OrderDTO mapToDTO(Order order) {
+        OrderDTO dto = new OrderDTO();
+        dto.setOrderId(order.getOrderId());
+        dto.setCustomerId(order.getCustomerId());
+        dto.setOrderDate(order.getOrderDate());
+        dto.setStatus(order.getStatus());
+        dto.setTotalCost(order.getTotalCost());
+        dto.setDeliveryLocation(order.getDeliveryLocation());
+        return dto;
     }
 }
