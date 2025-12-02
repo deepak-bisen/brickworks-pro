@@ -8,9 +8,12 @@ import java.util.List;
 
 public interface OrderService {
     public Order createOrder(OrderRequestDTO orderRequest);
+
     public Order createPublicQuote(OrderRequestDTO orderRequest);
+
     Order createOrderWithStatus(OrderRequestDTO orderRequest, String status);
 
     List<Order> getAllOrders();
+
     OrderDTO updateOrderStatus(Long orderId, String status);
 }

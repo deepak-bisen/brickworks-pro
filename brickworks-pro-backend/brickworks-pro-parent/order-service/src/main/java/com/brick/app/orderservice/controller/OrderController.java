@@ -36,10 +36,9 @@ public class OrderController {
      */
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Order CreateOrder(@RequestBody OrderRequestDTO orderRequestDTO){
+    public Order CreateOrder(@RequestBody OrderRequestDTO orderRequestDTO) {
         return orderService.createOrder(orderRequestDTO);
     }
-
 
 
     // --- NEW ENDPOINTS FOR ADMIN PANEL ---
@@ -48,18 +47,18 @@ public class OrderController {
     public List<Order> getAllOrders() {
         return orderService.getAllOrders();
     }
-  @PatchMapping("/{id}/status")
-    public ResponseEntity<?> updateStatus(@PathVariable Long id, @RequestBody Map<String, String> statusMap ){
-        String status =  statusMap.get("status");
-        if (status == null || status.isEmpty()){
-            return ResponseEntity.badRequest().body(Map.of("error","Status is required"));
+
+    @PatchMapping("/{id}/status")
+    public ResponseEntity<?> updateStatus(@PathVariable Long id, @RequestBody Map<String, String> statusMap) {
+        String status = statusMap.get("status");
+        if (status == null || status.isEmpty()) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Status is required"));
         }
-        try
-        {
-            OrderDTO updatedOrder = orderService.updateOrderStatus(id,status);
+        try {
+            OrderDTO updatedOrder = orderService.updateOrderStatus(id, status);
             return ResponseEntity.ok(updatedOrder);
-        }catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
-  }
+    }
 }

@@ -226,9 +226,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const activePage = document.getElementById(pageId + '-page');
         if (activePage) { activePage.hidden = false; }
         mobileMenu.classList.add('hidden');
-        // If admin dashboard is shown and we're logged in, load admin products
+        // If admin dashboard is shown and we're logged in, load admin products and quotes
         if (pageId === 'admin-dashboard' && getAuthToken && getAuthToken()) {
-            if (typeof fetchAdminProducts === 'function') fetchAdminProducts();
+            if (typeof fetchAdminProducts === 'function') {
+                try { fetchAdminProducts(); } catch (e) { console.warn('Preload products failed', e); }
+            }
+            if (typeof fetchAdminQuotes === 'function') {
+                try { fetchAdminQuotes(); } catch (e) { console.warn('Preload quotes failed', e); }
+            }
         }
     }
 
@@ -529,10 +534,10 @@ document.addEventListener('DOMContentLoaded', () => {
             showStatus("Quote request sent successfully! We will contact you soon.");
             document.getElementById('quote-form').reset();
 
-            // Go back home after 5 seconds, as requested
+            // Go back home after 2 seconds, as requested
             setTimeout(() => {
                 showPage('home'); // Go back home
-            }, 5000);
+            }, 3000);
 
         } catch (error) {
             console.error('Quote submission failed:', error);
@@ -628,6 +633,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (panelId === 'admin-panel-products') {
                 if (getAuthToken && getAuthToken()) {
                     if (typeof fetchAdminProducts === 'function') fetchAdminProducts();
+                }
+            }
+            // If switching to quotes panel, refresh admin quotes (only if logged in)
+            if (panelId === 'admin-panel-quotes') {
+                if (getAuthToken && getAuthToken()) {
+                    if (typeof fetchAdminQuotes === 'function') fetchAdminQuotes();
                 }
             }
         });
@@ -907,7 +918,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     const customers = await custRes.json();
                     customers.forEach(c => customerCache[c.customerId] = c);
                 }
-            } catch (e) { console.warn("Failed to fetch customer details", e); }
+            } catch (e) { 
+                console.warn("Failed to fetch customer details", e); }
 
             if (!orders || orders.length === 0) {
                 tbody.innerHTML = '<tr><td colspan="6" class="p-4 text-center text-gray-500">No quotes found.</td></tr>';

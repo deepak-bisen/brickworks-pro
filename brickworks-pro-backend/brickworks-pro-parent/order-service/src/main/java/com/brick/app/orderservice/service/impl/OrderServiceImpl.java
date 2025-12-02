@@ -69,13 +69,18 @@ public class OrderServiceImpl implements OrderService {
                 // Call Customer Service (Service Discovery handles the URL)
                 CustomerDTO customerResponse = restTemplate.postForObject("http://customer-service/api/customers", customerPayload, CustomerDTO.class);
 
-                if (customerResponse != null) {
+                if (customerResponse != null && customerResponse.getCustomerId() != null) {
                     finalCustomerId = customerResponse.getCustomerId();
+                } else {
+                    System.err.println("Warning: Customer created but ID was null in response.");
                 }
             } catch (Exception e) {
                 System.err.println("Failed To Create Customer: " + e.getMessage());
+                // Don't fail the whole order, but log it.
+                // finalCustomerId remains "0", so Admin knows to check it.
+
                 // Fallback: Set to a generic "Guest" ID if service fails
-                finalCustomerId = "GUEST-ERROR";
+                //finalCustomerId = "GUEST-ERROR";
             }
         }
 
@@ -133,8 +138,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDTO updateOrderStatus(Long orderId, String status) {
-        Order order = orderRepository.findById(orderId)
-                .orElseThrow(() -> new RuntimeException("Order not found with id: " + orderId));
+        Order order = orderRepository.findById(orderId).orElseThrow(() -> new RuntimeException("Order not found with id: " + orderId));
 
         order.setStatus(status);
         Order savedOrder = orderRepository.save(order);

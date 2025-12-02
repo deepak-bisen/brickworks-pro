@@ -19,7 +19,7 @@ public class CustomerController {
 
     @GetMapping
     public ResponseEntity<List<Customer>> getAllCustomers() {
-        return new ResponseEntity<>(customerService.getAllCustomers(), HttpStatus.FOUND);
+        return new ResponseEntity<>(customerService.getAllCustomers(), HttpStatus.OK);
     }
 
     @PostMapping
