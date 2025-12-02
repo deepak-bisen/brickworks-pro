@@ -2,7 +2,9 @@ package com.brick.app.orderservice.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "ORDER_DETAILS")
 public class OrderDetails {
@@ -29,43 +31,4 @@ public class OrderDetails {
     @Column(nullable = false)
     private Double pricePerUnit;
 
-    public Long getOdId() {
-        return odId;
-    }
-
-    public void setOdId(Long odId) {
-        this.odId = odId;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public Long getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public Double getPricePerUnit() {
-        return pricePerUnit;
-    }
-
-    public void setPricePerUnit(Double pricePerUnit) {
-        this.pricePerUnit = pricePerUnit;
-    }
 }

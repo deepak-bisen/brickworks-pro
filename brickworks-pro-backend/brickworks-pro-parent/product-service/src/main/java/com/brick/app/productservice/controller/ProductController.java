@@ -92,38 +92,3 @@ public class ProductController {
     }
 
 }
-
-/**
- * Create a new product with an optional image file.
- * Consumes MULTIPART_FORM_DATA_VALUE.
- * The 'product' part is expected to be a JSON string which Spring converts to a Product object.
- * The 'imageFile' part is the binary file data.
- */
-/**
- * @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
- * @ResponseStatus(HttpStatus.CREATED) public ResponseEntity<?> createProduct(
- * @RequestPart("product") Product product,
- * @RequestPart(value = "imageFile", required = false) MultipartFile imageFile) {
- * <p>
- * try {
- * // We delegate to the service.
- * // Note: We need to update ProductService to handle the file processing logic
- * // For now, assuming ProductService has a method that handles this or we do it here.
- * <p>
- * // If your service doesn't support file processing yet, we do a quick adaptation here:
- * // (Ideally, move this logic into ProductService)
- * if (imageFile != null && !imageFile.isEmpty()) {
- * // Convert image to Base64 string
- * String base64Image = "data:" + imageFile.getContentType() + ";base64," +
- * java.util.Base64.getEncoder().encodeToString(imageFile.getBytes());
- * product.setImageUrl(base64Image);
- * }
- * <p>
- * Product savedProduct = productService.createProduct(product);
- * return new ResponseEntity<>(savedProduct, HttpStatus.CREATED);
- * <p>
- * } catch (Exception e) {
- * return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
- * }
- * }
- */

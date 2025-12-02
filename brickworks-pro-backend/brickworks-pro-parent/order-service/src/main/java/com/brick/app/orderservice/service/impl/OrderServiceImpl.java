@@ -1,5 +1,6 @@
 package com.brick.app.orderservice.service.impl;
 
+import com.brick.app.orderservice.dto.CustomerDTO;
 import com.brick.app.orderservice.dto.OrderRequestDTO;
 import com.brick.app.orderservice.dto.ProductDTO;
 import com.brick.app.orderservice.entity.Order;
@@ -12,7 +13,9 @@ import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class OrderServiceImpl {
@@ -46,9 +49,37 @@ public class OrderServiceImpl {
      * This is the main, reusable logic for creating any order.
      */
     public Order createOrderWithStatus(OrderRequestDTO orderRequest, String status) {
-        // Step 1: Create a new Order entity and set its basic properties.
+
+         String finalCustomerId = orderRequest.getCustomerId();
+
+        // Step 1: If no ID provided, but we have details, create/fetch customer via Customer Service
+        if (finalCustomerId == null || finalCustomerId.isEmpty() || finalCustomerId.equals("0") && orderRequest.getEmail() != null){
+            try{
+                //prepare payload for Customer Service
+                Map<String, String> customerPayload = new HashMap<>();
+                customerPayload.put("name",orderRequest.getName());
+                customerPayload.put("phone",orderRequest.getPhone());
+                customerPayload.put("email",orderRequest.getEmail());
+
+                // Default address to delivery location if creating new
+                customerPayload.put("address",orderRequest.getDeliveryLocation());
+
+                // Call Customer Service (Service Discovery handles the URL)
+                CustomerDTO customerResponse = restTemplate.postForObject("http://customer-service/api/customers",customerPayload,CustomerDTO.class);
+
+                if (customerResponse != null){
+                    finalCustomerId = customerResponse.getId();
+                }
+            } catch (Exception e) {
+                System.err.println("Failed To Create Customer: " + e.getMessage());
+                // Fallback: Set to a generic "Guest" ID if service fails
+                finalCustomerId = "GUEST-ERROR";
+            }
+        }
+
+        //Step 2: Create a new Order entity and set its basic properties.
         Order order = new Order();
-        order.setCustomerId(orderRequest.getCustomerId() != null ? orderRequest.getCustomerId() : 0L); // Use 0 for guest
+        order.setCustomerId(finalCustomerId); // Use 0 for guest
         order.setOrderDate(LocalDateTime.now());
         order.setStatus(status); // Use the status we passed in
         order.setDeliveryLocation(orderRequest.getDeliveryLocation());
@@ -56,9 +87,9 @@ public class OrderServiceImpl {
         List<OrderDetails> orderDetails = new ArrayList<>();
         double totalCost = 0.0;
 
-        // Step 2: Loop through each item in the incoming order request.
+        // Step 3: Loop through each item in the incoming order request.
         for (var itemRequest : orderRequest.getItems()) {
-            // Step 2a: Call the product-service to get the product's current price and details.
+            // Step 3a: Call the product-service to get the product's current price and details.
             // We use the service name "product-service" in the URL. Eureka and @LoadBalanced handle the rest.
             String productUrl = "http://product-service/api/products/" + itemRequest.getProductId();
 
@@ -70,7 +101,7 @@ public class OrderServiceImpl {
                 throw new IllegalArgumentException("Product not found with id: " + itemRequest.getProductId());
             }
 
-            // Step 2b: Create a new OrderDetail entity for this line item.
+            // Step 3b: Create a new OrderDetail entity for this line item.
             OrderDetails orderDetail = new OrderDetails();
             orderDetail.setProductId(itemRequest.getProductId());
             orderDetail.setQuantity(itemRequest.getQuantity());
@@ -79,15 +110,15 @@ public class OrderServiceImpl {
 
             orderDetails.add(orderDetail);
 
-            // Step 2c: Add this line item's cost to the running total.
+            // Step 3c: Add this line item's cost to the running total.
             totalCost += itemRequest.getQuantity() * product.getUnitPrice();
         }
 
-        // Step 3: Set the final calculated details on the order.
+        // Step 4: Set the final calculated details on the order.
         order.setOrderDetails(orderDetails);
         order.setTotalCost(totalCost);
 
-        // Step 4: Save the fully constructed Order object (along with its OrderDetails, thanks to cascading) to the database.
+        // Step 5: Save the fully constructed Order object (along with its OrderDetails, thanks to cascading) to the database.
         return orderRepository.save(order);
     }
 }
