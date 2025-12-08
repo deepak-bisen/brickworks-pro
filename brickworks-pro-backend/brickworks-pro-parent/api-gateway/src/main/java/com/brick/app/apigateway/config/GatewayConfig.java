@@ -31,7 +31,6 @@ public class GatewayConfig {
                         .request(r -> r.header(HttpHeaders.AUTHORIZATION, authHeader))
                         .build();
             }
-
             // Pass the mutated (or original) request down the filter chain
             return chain.filter(mutatedExchange);
         };

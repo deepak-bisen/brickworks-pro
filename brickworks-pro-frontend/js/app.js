@@ -428,12 +428,24 @@ document.addEventListener('DOMContentLoaded', () => {
             // Use new helper function for image (pass the full product object)
             const imageUrl = getProductImage(product);
 
+            // Determine availability: check stockQuantity
+            const isAvailable = product.stockQuantity && product.stockQuantity > 0;
+            const availabilityBadge = isAvailable 
+                ? `<span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Available</span>`
+                : `<span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Unavailable</span>`;
+
             const title = document.createElement('h3');
             title.className = 'text-2xl font-bold mb-2';
             title.textContent = product.name || 'Unnamed product';
             const price = document.createElement('p');
             price.className = 'text-gray-700 mb-4';
             price.innerHTML = `<span class="font-semibold">Price:</span> ₹${(product.unitPrice ?? 0).toFixed(2)}</small> (per unit)`;
+
+            // Disable Get a Quote button if unavailable
+            const buttonClass = isAvailable 
+                ? 'nav-link-card bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700 transition duration-300'
+                : 'nav-link-card bg-gray-400 text-white px-4 py-2 rounded-lg font-medium cursor-not-allowed';
+            const buttonText = isAvailable ? 'Get a Quote' : 'Out of Stock';
 
             productCard.innerHTML = `
                         <div class="bg-gray-200">
@@ -444,10 +456,15 @@ document.addEventListener('DOMContentLoaded', () => {
                             <p class="text-gray-700 mb-1"><span class="font-semibold">Type:</span> ${product.brickType}</p>
                             <p class="text-gray-700 mb-1"><span class="font-semibold">Color:</span> ${product.color}</p>
                             ${price.outerHTML}
-                            <a href="#" class="nav-link-card bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700 transition duration-300" data-page="quote" data-product-id="${product.productId}">Get a Quote</a>
+                            <p class="text-gray-700 mb-6">${availabilityBadge}</p>
+                            <a href="#" class="${buttonClass}" data-page="quote" data-product-id="${product.productId}" ${!isAvailable ? 'onclick="return false;"' : ''}>${buttonText}</a>
                         </div>
                     `;
             productCard.querySelector('.nav-link-card').addEventListener('click', (e) => {
+                if (!isAvailable) {
+                    e.preventDefault();
+                    return;
+                }
                 e.preventDefault();
                 showPage('quote');
                 // Use the element's dataset (safer than e.target which can be a child element)
@@ -669,11 +686,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderAdminProductTable(products) {
         adminProductTableBody.innerHTML = '';
         if (products.length === 0) {
-            adminProductTableBody.innerHTML = `<tr><td colspan="5" class="p-4 text-center">No products found.</td></tr>`;
+            adminProductTableBody.innerHTML = `<tr><td colspan="6" class="p-4 text-center">No products found.</td></tr>`;
             return;
         }
 
         products.forEach(product => {
+            const isAvailable = product.stockQuantity && product.stockQuantity > 0;
+            const statusBadge = isAvailable 
+                ? `<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Available</span>`
+                : `<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Unavailable</span>`;
+
             const row = document.createElement('tr');
             row.innerHTML = `
                         <td class="px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-900">${product.name}</td>
@@ -681,6 +703,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">${product.color}</td>
                         <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">₹${product.unitPrice.toFixed(2)}</td>
                         <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">${product.stockQuantity}</td>
+                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">${statusBadge}</td>
                         <td class="px-4 py-3 whitespace-nowrap text-sm font-medium space-x-2">
                             <button class="admin-edit-btn text-blue-600 hover:text-blue-900" data-id="${product.productId}">Edit</button>
                             <button class="admin-delete-btn text-red-600 hover:text-red-900" data-id="${product.productId}">Delete</button>

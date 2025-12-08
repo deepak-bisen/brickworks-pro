@@ -28,7 +28,7 @@ public class CorsConfig {
 
         // --- This is the key change ---
         // We are explicitly allowing your frontend's origin
-        corsConfig.setAllowedOrigins(Arrays.asList("http://127.0.0.1:5500", "http://localhost:5500", "http://127.0.0.1:5501"));
+        corsConfig.setAllowedOrigins(Arrays.asList("http://127.0.0.1:5500", "http://localhost:5500", "http://127.0.0.1:5501 "));
         corsConfig.setAllowCredentials(true);
         corsConfig.setMaxAge(3600L); // Cache preflight response for 1 hour
         corsConfig.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "PATCH"));
