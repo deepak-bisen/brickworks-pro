@@ -12,6 +12,7 @@ public class OrderDTO {
     private String status;
     private Double totalCost;
     private String deliveryLocation;
-    // You might want to include OrderDetailsDTOs here too if needed for the full view
+
+    // we might want to include OrderDetailsDTOs here too if needed for the full view
     // private List<OrderDetailsDTO> orderDetails;
 }

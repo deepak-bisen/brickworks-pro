@@ -430,7 +430,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Determine availability: check stockQuantity
             const isAvailable = product.stockQuantity && product.stockQuantity > 0;
-            const availabilityBadge = isAvailable 
+            const availabilityBadge = isAvailable
                 ? `<span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Available</span>`
                 : `<span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Unavailable</span>`;
 
@@ -442,7 +442,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price.innerHTML = `<span class="font-semibold">Price:</span> ₹${(product.unitPrice ?? 0).toFixed(2)}</small> (per unit)`;
 
             // Disable Get a Quote button if unavailable
-            const buttonClass = isAvailable 
+            const buttonClass = isAvailable
                 ? 'nav-link-card bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700 transition duration-300'
                 : 'nav-link-card bg-gray-400 text-white px-4 py-2 rounded-lg font-medium cursor-not-allowed';
             const buttonText = isAvailable ? 'Get a Quote' : 'Out of Stock';
@@ -498,9 +498,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const quantity = document.getElementById('quote-quantity').value;
         const deliveryLocation = document.getElementById('quote-location').value;
         // --- NEW: Get Customer Details ---
-        const name = document.getElementById('quote-name').value;
-        const email = document.getElementById('quote-email').value;
-        const phone = document.getElementById('quote-phone').value;
+        const name = document.getElementById('quote-name').value.trim();
+        const email = document.getElementById('quote-email').value.trim();
+        const phone = document.getElementById('quote-phone').value.trim();
+
+        // Regex Definitions
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const phonePattern = /^\d{10}$/;
+
+        // Basic Validation
+        if (!emailPattern.test(email)) {
+            return showStatus("Invalid email format.", true);
+        }
+        if (!phonePattern.test(phone.replace(/\D/g, ''))) {
+            return showStatus("Phone number must be 10 digits.", true);
+        }
 
         // We add this check to prevent submitting an empty/invalid product ID.
         if (!selectedProductId) {
@@ -692,7 +704,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         products.forEach(product => {
             const isAvailable = product.stockQuantity && product.stockQuantity > 0;
-            const statusBadge = isAvailable 
+            const statusBadge = isAvailable
                 ? `<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Available</span>`
                 : `<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Unavailable</span>`;
 
@@ -941,8 +953,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     const customers = await custRes.json();
                     customers.forEach(c => customerCache[c.customerId] = c);
                 }
-            } catch (e) { 
-                console.warn("Failed to fetch customer details", e); }
+            } catch (e) {
+                console.warn("Failed to fetch customer details", e);
+            }
 
             if (!orders || orders.length === 0) {
                 tbody.innerHTML = '<tr><td colspan="6" class="p-4 text-center text-gray-500">No quotes found.</td></tr>';

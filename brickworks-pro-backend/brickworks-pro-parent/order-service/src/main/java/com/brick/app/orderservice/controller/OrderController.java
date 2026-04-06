@@ -25,9 +25,16 @@ public class OrderController {
      * It now calls the new service method to set the correct status.
      */
     @PostMapping("/public-quote")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Order createPublicQuote(@RequestBody OrderRequestDTO orderRequest) {
-        return orderService.createPublicQuote(orderRequest);
+    public ResponseEntity<?> createPublicQuote(@RequestBody OrderRequestDTO orderRequest) {
+        try {
+        return ResponseEntity.status(HttpStatus.CREATED).body(orderService.createPublicQuote(orderRequest));
+        }catch (IllegalArgumentException e){
+            //catching validation errors
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", e.getMessage()));
+        }catch (Exception e){
+            //catching unexpected errors
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("error", "An unexpected error occured. Please try again later."));
+        }
     }
 
     /**
@@ -44,8 +51,12 @@ public class OrderController {
     // --- NEW ENDPOINTS FOR ADMIN PANEL ---
 
     @GetMapping
-    public List<Order> getAllOrders() {
-        return orderService.getAllOrders();
+    public ResponseEntity<List<Order>> getAllOrders() {
+        try{
+        return ResponseEntity.ok(orderService.getAllOrders());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @PatchMapping("/{id}/status")

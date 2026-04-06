@@ -1,4 +1,4 @@
-package com.brick.app.productservice.service;
+package com.brick.app.orderservice.service.util;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -25,7 +25,6 @@ public class JwtUtil {
     // private String SECRET_KEY = "brickworks_secret_key";
 
     // A more secure, longer secret key. Must be long enough for the HS256 algorithm.
-    // This MUST be identical to the key in our employee-service
     private final String SECRET_KEY = "BrickWorksProSecretKeyForJWTGenerationWhichIsSecureAndLongEnough";
 
     // --- NEW METHOD to generate a proper Key object ---
@@ -62,7 +61,6 @@ public class JwtUtil {
     }
 
     // Generates a new JWT for a given UserDetails object
-    // This service only validates, but we include the whole file for consistency
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
         return createToken(claims, userDetails.getUsername());

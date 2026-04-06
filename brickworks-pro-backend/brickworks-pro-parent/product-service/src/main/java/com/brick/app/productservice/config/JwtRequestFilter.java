@@ -1,6 +1,6 @@
 package com.brick.app.productservice.config;
 
-import com.brick.app.productservice.service.JwtUtil;
+import com.brick.app.productservice.service.util.JwtUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

@@ -8,6 +8,7 @@ import com.brick.app.orderservice.entity.Order;
 import com.brick.app.orderservice.entity.OrderDetails;
 import com.brick.app.orderservice.repository.OrderRepository;
 import com.brick.app.orderservice.service.OrderService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 @Service
+@Slf4j
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
@@ -51,6 +53,9 @@ public class OrderServiceImpl implements OrderService {
      */
     public Order createOrderWithStatus(OrderRequestDTO orderRequest, String status) {
 
+        //validating order request
+        validateOrderRequest(orderRequest);
+
         String finalCustomerId = orderRequest.getCustomerId();
 
         // Step 1: If no ID provided, but we have details,
@@ -72,10 +77,10 @@ public class OrderServiceImpl implements OrderService {
                 if (customerResponse != null && customerResponse.getCustomerId() != null) {
                     finalCustomerId = customerResponse.getCustomerId();
                 } else {
-                    System.err.println("Warning: Customer created but ID was null in response.");
+                    log.error("Warning: Customer created but ID was null in response.");
                 }
             } catch (Exception e) {
-                System.err.println("Failed To Create Customer: " + e.getMessage());
+                log.error("Failed To Create Customer: {}", e.getMessage());
                 // Don't fail the whole order, but log it.
                 // finalCustomerId remains "0", so Admin knows to check it.
 
@@ -156,5 +161,19 @@ public class OrderServiceImpl implements OrderService {
         dto.setTotalCost(order.getTotalCost());
         dto.setDeliveryLocation(order.getDeliveryLocation());
         return dto;
+    }
+
+    // --- Helper method to validate order request
+    private void validateOrderRequest(OrderRequestDTO request) {
+        if (request.getEmail() != null && !request.getEmail().matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+            throw new IllegalArgumentException("Invalid email format.");
+        }
+        if (request.getPhone() != null && !request.getPhone().matches("^\\d{10}$")) {
+            throw new IllegalArgumentException("Invalid phone number. Must be 10 digits.");
+        }
+        // Specific check for delivery location/pincode
+        if (request.getDeliveryLocation() == null || request.getDeliveryLocation().length() < 3) {
+            throw new IllegalArgumentException("Delivery location/Pincode is too short.");
+        }
     }
 }

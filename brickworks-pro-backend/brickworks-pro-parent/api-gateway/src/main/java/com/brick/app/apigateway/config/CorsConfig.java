@@ -16,18 +16,7 @@ public class CorsConfig {
 
         CorsConfiguration corsConfig = new CorsConfiguration();
 
-        /**
-         * // This allows requests from any origin.
-         * corsConfig.setAllowedOrigins(List.of("*"));
-         * // This allows all HTTP methods (GET, POST, DELETE, etc.)
-         * corsConfig.setAllowedMethods(List.of("*"));
-         * // This allows all headers (including our 'Authorization' header)
-         * corsConfig.setAllowedHeaders(List.of("*"));
-         */
-
-
-        // --- This is the key change ---
-        // We are explicitly allowing your frontend's origin
+        // Explicitly allowing our frontend's origin
         corsConfig.setAllowedOrigins(Arrays.asList("http://127.0.0.1:5500", "http://localhost:5500", "http://127.0.0.1:5501 "));
         corsConfig.setAllowCredentials(true);
         corsConfig.setMaxAge(3600L); // Cache preflight response for 1 hour

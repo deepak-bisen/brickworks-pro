@@ -1,6 +1,6 @@
 package com.brick.app.orderservice.config;
 
-import com.brick.app.orderservice.service.JwtUtil;
+import com.brick.app.orderservice.service.util.JwtUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

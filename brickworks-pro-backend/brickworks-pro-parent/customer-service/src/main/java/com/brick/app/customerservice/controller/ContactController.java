@@ -4,6 +4,7 @@ import com.brick.app.customerservice.dto.ContactMessageRequest;
 import com.brick.app.customerservice.entity.ContactMessage;
 import com.brick.app.customerservice.service.ContactService;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +13,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/contact") // Using /api/v1 for consistency
+@Slf4j
 public class ContactController {
 
     private final ContactService contactService;
@@ -28,11 +30,16 @@ public class ContactController {
     public ResponseEntity<?> submitContactForm(@Valid @RequestBody ContactMessageRequest request) {
         // The @Valid annotation triggers the validation rules in the DTO.
         // If validation fails, Spring Boot will automatically return a 400 Bad Request.
+        try {
+            contactService.processContactMessage(request);
+            log.info("Message received successfully");
+            // Return a 200 OK response with a success message.
+            return ResponseEntity.ok(Map.of("message", "Message received successfully!"));
 
-        contactService.processContactMessage(request);
-
-        // Return a 200 OK response with a success message.
-        return ResponseEntity.ok(Map.of("message", "Message received successfully!"));
+        } catch (Exception e) {
+            log.info("Error While Submitting Message");
+        }
+        return ResponseEntity.badRequest().build();
     }
 
     @GetMapping
@@ -43,9 +50,10 @@ public class ContactController {
     @DeleteMapping("{id}")
     public ResponseEntity<Void> deleteMessage(@PathVariable String id) {
         try {
+
             contactService.deleteMessage(id);
             return ResponseEntity.noContent().build();
-        } catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
     }

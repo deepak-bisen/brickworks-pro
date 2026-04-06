@@ -31,6 +31,7 @@ public class ContactServiceImpl implements ContactService {
     public void processContactMessage(ContactMessageRequest request) {
         // For now, we will just log the message.
         // In the future, this is where you would send an email or save to a different table.
+        log.info("Inside @Class ContactServiceImpl inside @Method proccessContactMessage:");
         log.info("New contact message received! Processing...");
         log.info("From: {} ({})", request.getName(), request.getEmail());
         log.info("Message: {}", request.getMessage());
@@ -56,6 +57,8 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public void deleteMessage(String id) {
+        log.info("Inside @Class ContactServiceImpl inside @Method deleteMessage:");
+        log.info("trying to delete message...");
         if (contactMessageRepository.existsById(id)) {
             contactMessageRepository.deleteById(id);
         } else {
@@ -65,10 +68,12 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public void updateMessageStatus(String id, String status) {
+        log.info("Inside @Class ContactServiceImpl inside @Method updateMessage:");
+        log.info("updating message...");
         ContactMessage message = contactMessageRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Message not found with id: " + id));
-
         message.setStatus(status);
         contactMessageRepository.save(message);
+        log.info("message updated.");
     }
 }

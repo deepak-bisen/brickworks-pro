@@ -23,7 +23,7 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {  // @RequestBody tells Spring to convert the incoming JSON into a Product object
+    public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {  // @RequestBody tells Spring to convert the incoming JSON into a Customer object
         Optional<Customer> create = customerService.createCustomer(customer);
         return  create.map(c -> new ResponseEntity<>(c, HttpStatus.CREATED))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
